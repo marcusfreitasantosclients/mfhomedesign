@@ -1,0 +1,17 @@
+.btn-logout {
+  display: none;
+}
+
+.logged-in .btn-login {
+  display: none;
+}
+.logged-in .btn-logout {
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .navbar .dropdown-menu {
+    margin-top: 0;
+    transition: opacity 0.3s ease;
+  }
+}

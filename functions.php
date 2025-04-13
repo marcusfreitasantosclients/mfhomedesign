@@ -23,7 +23,6 @@ function theme_enqueue_styles_and_scripts() {
     wp_enqueue_style('theme-style', get_stylesheet_uri(), [], $version);
 
     //JS
-    wp_enqueue_script('bootstrap-js', THEME_URL . '/assets/libs/bootstrap/js/bootstrap.min.js', ['jquery'], $version);
     wp_enqueue_script('bootstrap-js', THEME_URL . '/assets/libs/bootstrap/js/bootstrap.bundle.min.js', ['jquery'], $version);
     wp_enqueue_script('lightbox-js', THEME_URL . '/assets/libs/lightbox/js/lightbox.min.js', ['jquery'], $version);
     wp_enqueue_script('splide-js', THEME_URL . '/assets/libs/splide/js/splide.min.js', ['jquery'], $version);

@@ -15,7 +15,9 @@ function mf_header($component_data){
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <div class="container">
                 <!-- Logo / Brand -->
-                <a class="navbar-brand" href="#">MySite</a>
+                <a class="navbar-brand" href="<?= site_url() ?>">
+                    <img src="<?= get_option('logo_header') ?>" alt="Logo" class="img-fluid" style="width: 50px; height: auto;">
+                </a>
 
                 <!-- Toggle Button for Mobile -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -27,15 +29,38 @@ function mf_header($component_data){
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <?php
-                            foreach( $menu_items as $menu_item ) { ?>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?= $menu_item->url ?>"><?= $menu_item->title ?></a>
-                                </li>
-                            <?php }
+                        // Group menu items by parent ID
+                        $menu_tree = [];
+                        foreach ($menu_items as $item) {
+                            $menu_tree[$item->menu_item_parent][] = $item;
+                        }
+
+                        // Recursive function to render menu items
+                        function render_menu_items($parent_id, $menu_tree) {
+                            foreach ($menu_tree[$parent_id] ?? [] as $item) {
+                                $has_children = !empty($menu_tree[$item->ID]);
+                                $classes = implode(' ', $item->classes ?? []);
+                                if ($has_children) {
+                                    echo '<li class="nav-item dropdown ' . esc_attr($classes) . '">';
+                                    echo '<a class="nav-link dropdown-toggle" href="' . esc_url($item->url) . '" id="menu-item-' . $item->ID . '" role="button" data-bs-toggle="dropdown" aria-expanded="false" target="' . esc_attr($item->target) . '">' . esc_html($item->title) . '</a>';
+                                    echo '<ul class="dropdown-menu" aria-labelledby="menu-item-' . $item->ID . '">';
+                                    render_menu_items($item->ID, $menu_tree);
+                                    echo '</ul>';
+                                    echo '</li>';
+                                } else {
+                                    echo '<li class="nav-item ' . esc_attr($classes) . '">';
+                                    echo '<a class="nav-link" href="' . esc_url($item->url) . '" target="' . esc_attr($item->target) . '">' . esc_html($item->title) . '</a>';
+                                    echo '</li>';
+                                }
+                            }
+                        }
+
+                        render_menu_items(0, $menu_tree);
                         ?>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
 <?php }
