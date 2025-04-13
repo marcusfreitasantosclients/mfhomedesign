@@ -16,7 +16,7 @@ function mf_header($component_data){
             <div class="container">
                 <!-- Logo / Brand -->
                 <a class="navbar-brand" href="<?= site_url() ?>">
-                    <img src="<?= get_option('logo_header') ?>" alt="Logo" class="img-fluid" style="width: 50px; height: auto;">
+                    <img src="<?= get_option('site_logo_header') ?>" alt="Logo" class="img-fluid" style="width: 60px; height: auto;">
                 </a>
 
                 <!-- Toggle Button for Mobile -->

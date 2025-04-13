@@ -22,9 +22,9 @@ function render_general_theme_settings_page() {
 
             <!-- NAVIGATION -->
             <div class="tab__navigation">
-                <a href="#general" class="active">Geral</a>
+                <a href="#general" class="active">General</a>
                 <a href="#social">Social</a>
-                <a href="#integration">Integrações</a>
+                <a href="#integration">Integrations</a>
             </div>
 
             <!-- GENERAL -->
@@ -45,8 +45,8 @@ function render_general_theme_settings_page() {
                         <th scope="row">Header logo</th>
                         <td>
                             <div class="configs__image">
-                                <?php if (get_option('logo_header')): ?><img src="<?= get_option('logo_header'); ?>"><?php endif; ?>
-                                <input type="text" name="logo_header" id="logo_header" value="<?= get_option('logo_header'); ?>" />
+                                <?php if (get_option('site_logo_header')): ?><img src="<?= get_option('site_logo_header'); ?>"><?php endif; ?>
+                                <input type="text" name="site_logo_header" id="site_logo_header" value="<?= get_option('site_logo_header'); ?>" />
                                 <button type="button" class="button" id="upload_logo_header_button">Selecionar Logo Header</button>
                             </div>
                             <p class="description">Choose an image for the website's header.</p>
@@ -56,11 +56,18 @@ function render_general_theme_settings_page() {
                         <th scope="row">Footer logo</th>
                         <td>
                             <div class="configs__image">
-                                <?php if (get_option('logo_footer')): ?><img src="<?= get_option('logo_footer'); ?>"><?php endif; ?>
-                                <input type="text" name="logo_footer" id="logo_footer" value="<?= get_option('logo_footer'); ?>" />
+                                <?php if (get_option('site_logo_footer')): ?><img src="<?= get_option('site_logo_footer'); ?>"><?php endif; ?>
+                                <input type="text" name="site_logo_footer" id="site_logo_footer" value="<?= get_option('site_logo_footer'); ?>" />
                                 <button type="button" class="button" id="upload_logo_footer_button">Selecionar Logo Footer</button>
                             </div>
                             <p class="description">Choose an image for the website's footer.</p>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row">Footer text</th>
+                        <td>
+                            <input style="width: 50%;" type="text" name="site_footer_text" id="site_footer_text" value="<?= get_option('site_footer_text'); ?>" placeholder=""/>
+                            <p class="description">Insert a short company description.</p>
                         </td>
                     </tr>
                 </table>
@@ -160,6 +167,7 @@ function render_general_theme_settings_page() {
 //REGISTER SETUP OPTIONS
 function register_theme_settings() {
     $settings = [
+        'site_footer_text',
         'site_email',
         'site_whatsapp',
         'site_favicon',
