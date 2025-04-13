@@ -8,4 +8,4 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <?php import_component('header', []); ?>
+    <?php import_component('header', ['header' => []]); ?>
