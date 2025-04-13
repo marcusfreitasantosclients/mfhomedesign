@@ -1,7 +1,4 @@
-<?php ?>
-    <footer>
-        <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
-        <?php wp_footer(); ?>
-    </footer>
+<?php import_component('footer', []); ?>
+
 </body>
 </html>
