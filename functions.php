@@ -12,7 +12,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 define('THEME_DIR', get_template_directory());
 define('THEME_URL', get_template_directory_uri());
-require_once('inc/general-setup.php');
+require_once('inc/general-setup/general-setup.php');
 require_once('inc/custom-post-types/cpt-services.php');
 require_once('inc/custom-post-types/cpt-designers.php');
 require_once('inc/custom-post-types/cpt-gallery.php');
