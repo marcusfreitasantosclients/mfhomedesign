@@ -13,6 +13,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 define('THEME_DIR', get_template_directory());
 define('THEME_URL', get_template_directory_uri());
 require_once('inc/general-setup.php');
+require_once('inc/custom-post-types.php');
 
 function theme_enqueue_styles_and_scripts() {
     $version = 1.0;
