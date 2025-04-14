@@ -1,6 +1,5 @@
 <?php 
 
-// Services
 function register_cpt_service() {
     $labels = array(
         'name'                  => 'Services',
@@ -35,7 +34,7 @@ function register_cpt_service() {
         'menu_icon'             => 'dashicons-screenoptions',
         'capability_type'       => 'post',
         'hierarchical'          => false,
-        'supports'              => array('title'), 
+        'supports'              => array('title', 'editor', 'thumbnail'), 
         'has_archive'           => false,
         'rewrite'               => array('slug' => 'service'),
         'show_in_rest'          => false,
