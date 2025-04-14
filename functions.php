@@ -73,4 +73,14 @@ function import_component($component_name, $component_data) {
         }
     }
 }
+
+function query_cpt_based_on_type($type){
+    $query = new WP_Query( [
+        'post_type' => $type,
+        'posts_per_page' => -1,
+        'order_by' => 'title',
+    ]);
+
+    return $query->posts;
+}
 ?>

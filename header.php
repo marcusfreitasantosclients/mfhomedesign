@@ -4,8 +4,10 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
     <?php import_component('header', ['header' => []]); ?>
+
+

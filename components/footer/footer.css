@@ -1,0 +1,7 @@
+footer .social__links a:hover {
+  transition: 0.3s;
+}
+
+footer .social__links a:hover {
+  opacity: 0.5;
+}
