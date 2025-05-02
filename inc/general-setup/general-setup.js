@@ -24,7 +24,7 @@ jQuery(document).ready(function ($) {
   // Seta os botões de galeria
   setupMediaUploader(
     "#upload_favicon_button",
-    "#favicon",
+    "#site_favicon",
     "Selecionar Favicon",
     "Usar como Favicon"
   );

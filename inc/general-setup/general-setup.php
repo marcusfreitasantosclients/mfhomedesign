@@ -34,8 +34,8 @@ function render_general_theme_settings_page() {
                         <th scope="row">Favicon</th>
                         <td>
                             <div class="configs__image configs__image-logo">
-                                <?php if (get_option('favicon')): ?><img src="<?= get_option('favicon'); ?>"><?php endif; ?>
-                                <input type="text" name="favicon" id="favicon" value="<?= get_option('favicon'); ?>" />
+                                <?php if (get_option('site_favicon')): ?><img src="<?= get_option('site_favicon'); ?>"><?php endif; ?>
+                                <input type="text" name="site_favicon" id="site_favicon" value="<?= get_option('site_favicon'); ?>" />
                                 <button type="button" class="button" id="upload_favicon_button">Select Favicon</button>
                             </div>
                             <p class="description">Choose an image for the website's favicon.</p>
