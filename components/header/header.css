@@ -9,6 +9,10 @@
   display: block;
 }
 
+header a {
+  color: var(--primary_color_dark) !important;
+}
+
 @media (min-width: 992px) {
   .navbar .dropdown-menu {
     margin-top: 0;

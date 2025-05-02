@@ -1,5 +1,13 @@
 <?php
 function mf_footer() {
+    $theme_location = 'footer';
+    $menu_items = [];
+    
+    if (($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
+        $menu = get_term( $locations[$theme_location], 'nav_menu' );
+        $menu_items = wp_get_nav_menu_items($menu->term_id);
+    }
+
     $services = query_cpt_based_on_type('service');
     $social_links = [
         'whatsapp' => 'http://wa.me/' . get_option('site_whatsapp'),
@@ -11,38 +19,50 @@ function mf_footer() {
         'tiktok' => get_option('site_tiktok'),
     ]
     ?>
-    <footer class="footer bg-dark text-white">
+    <footer class="footer">
         <div class="container pt-5">
             <div class="row">
-                <div class="col-md-4">
-                    <img src="<?= get_option('site_logo_footer') ?>" alt="Logo" class="img-fluid mb-3" style="width: 150px; height: auto;">
+                <div class="col-md-3">
+                    <img src="<?= get_option('site_logo_footer') ?>" alt="Logo" class="img-fluid mb-3" style="width: 100px; height: auto;">
                     <p><?= get_option('site_footer_text'); ?></p>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <h5>Sitemap</h5>
+
+                    <?php foreach($menu_items as $menu_item){ ?>
+                        <div class="mb-2  w-100">
+                            <a href="<?= $menu_item->url; ?>" class=" text-decoration-none">
+                                <?= $menu_item->title; ?>
+                            </a>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <div class="col-md-3">
                     <h5>Our Services</h5>
 
                     <?php foreach($services as $service){ ?>
-                        <div class="mb-2">
-                            <a href="" class="text-white text-decoration-none">
+                        <div class="mb-2 w-100">
+                            <a href="" class=" text-decoration-none">
                                 <?= $service->post_title; ?>
                             </a>
                         </div>
                     <?php } ?>
                 </div>
-                <div class="col-md-4 social__links">
+                <div class="col-md-3 social__links">
                     <h5>Contact us</h5>
 
                     <?php if(get_option('site_email')){ ?>
-                        <a href="mailto:<?= get_option('site_email') ?>" class="text-white text-decoration-none mb-5"><?= get_option('site_email') ?></a>
+                        <a href="mailto:<?= get_option('site_email') ?>" class=" text-decoration-none mb-2"><?= get_option('site_email') ?></a>
                     <?php } ?>
 
-                    <ul class="list-unstyled d-flex flex-row align-items-center gap-2 mt-2">
+                    <ul class="list-unstyled d-flex flex-row align-items-center gap-2">
                         <?php foreach($social_links as $key => $link) { ?>
                             <?php if($link) { ?>
                                 <li>
                                     <a href="<?= $link ?>" target="_blank">
-                                        <box-icon type='logo' name="<?= $key ?>" color="white"></box-icon>
+                                        <box-icon type='logo' name="<?= $key ?>" color="var(--primary_color_dark)"></box-icon>
                                     </a>
                                 </li>
                             <?php } ?>
@@ -52,11 +72,11 @@ function mf_footer() {
             </div>
         </div>
 
-        <hr style="margin: 0"/>
 
-        <div class="p-3 bg-dark">
-            <div class="container text-center text-white">
-                <p style="margin: 0;">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
+        <div class="p-5">
+            <div class="container text-center">
+                <hr style="margin: 0"/>
+                <p class="py-3" style="margin: 0;">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -12,10 +12,10 @@ function mf_header($component_data){
     ?>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <!-- Logo / Brand -->
-                <a class="navbar-brand" href="<?= site_url() ?>">
+                <a class="navbar-brand" href="<?= home_url() ?>">
                     <img src="<?= get_option('site_logo_header') ?>" alt="Logo" class="img-fluid" style="width: 60px; height: auto;">
                 </a>
 
@@ -49,7 +49,7 @@ function mf_header($component_data){
                                     echo '</li>';
                                 } else {
                                     echo '<li class="nav-item ' . esc_attr($classes) . '">';
-                                    echo '<a class="nav-link" href="' . esc_url($item->url) . '" target="' . esc_attr($item->target) . '">' . esc_html($item->title) . '</a>';
+                                    echo '<a class="nav-link" href="' . esc_url($item->title == "Logout" ? wp_logout_url(home_url()) : $item->url) . '" target="' . esc_attr($item->target) . '">' . esc_html($item->title) . '</a>';
                                     echo '</li>';
                                 }
                             }
@@ -57,7 +57,19 @@ function mf_header($component_data){
 
                         render_menu_items(0, $menu_tree);
                         ?>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= wc_get_endpoint_url('myaccount') ?>">
+                                <span class="d-block d-md-none">Minha conta</span>
+                                <box-icon name='user' class="d-none d-md-block" color="var(--primary_color_dark)"></box-icon>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= wc_get_endpoint_url('cart') ?>"><box-icon name='cart' color="var(--primary_color_dark)" ></box-icon></a>
+                        </li>
                     </ul>
+
                 </div>
             </div>
         </nav>

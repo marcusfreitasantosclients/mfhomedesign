@@ -1,7 +1,23 @@
-footer .social__links a:hover {
-  transition: 0.3s;
+footer h5 {
+  font-family: "Lato-Bold";
 }
 
-footer .social__links a:hover {
-  opacity: 0.5;
+footer a {
+  color: var(--text_color);
+  padding-top: 6px;
+  border-top: 1px solid var(--secondary_color);
+  width: 100%;
+  display: block;
+}
+
+footer .social__links ul li a {
+  border: none;
+  background-color: var(--primary_color_light);
+  padding: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
