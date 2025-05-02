@@ -1,0 +1,16 @@
+.mf_default_btn {
+  border-radius: 50px !important;
+}
+
+.mf_default_btn.btn-primary {
+  background: var(--primary_color);
+  background-color: var(--primary_color);
+  border-color: var(--primary_color);
+}
+
+.mf_default_btn.btn-secondary {
+  background: none;
+  background-color: transparent;
+  border-color: var(--primary_color);
+  color: var(--primary_color);
+}

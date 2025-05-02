@@ -42,6 +42,10 @@ body {
   color: var(--text_color);
 }
 
+.bg-primary {
+  background-color: var(--primary_color) !important;
+}
+
 a {
   transition: 0.5s !important;
 }
