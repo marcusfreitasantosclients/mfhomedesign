@@ -27,7 +27,7 @@ function mf_header($component_data){
 
                 <!-- Navigation Links -->
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto gap-2">
                         <?php
                         // Group menu items by parent ID
                         $menu_tree = [];
@@ -67,6 +67,10 @@ function mf_header($component_data){
 
                         <li class="nav-item">
                             <a class="nav-link" href="<?= wc_get_endpoint_url('cart') ?>"><box-icon name='cart' color="var(--primary_color_dark)" ></box-icon></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <?php import_component('searchform', ['searchform' => []]); ?>
                         </li>
                     </ul>
 
