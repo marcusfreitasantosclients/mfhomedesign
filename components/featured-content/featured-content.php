@@ -32,5 +32,4 @@ function mf_featured_content($component_data){
             </div>
         </div>
     </section>
-
 <?php }
