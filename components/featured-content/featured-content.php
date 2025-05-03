@@ -20,9 +20,9 @@ function mf_featured_content($component_data){
                             foreach($component_data['featured_posts'] as $current_post){ ?>
                                 <div class="col-md-4 my-2">
                                     <?php
-                                    import_component('product-card', [
-                                        'product-card' => $current_post,
-                                    ]);
+                                        import_component('product-card', [
+                                            'product-card' => $current_post,
+                                        ]);
                                     ?>                                
                                 </div>
                             <?php } ?>
