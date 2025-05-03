@@ -1,5 +1,5 @@
 .mf_banner {
-  min-height: 400px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +16,14 @@
 }
 
 .mf_banner .splide__track {
-  height: 400px !important;
+  height: 600px !important;
   width: 100%;
+}
+
+.mf_banner .splide__arrow {
+  background: none;
+}
+
+.mf_banner .splide__arrow svg {
+  fill: var(--light_gray_color);
 }
