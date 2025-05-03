@@ -34,7 +34,7 @@ function register_cpt_designer() {
         'menu_icon'             => 'dashicons-admin-customizer',
         'capability_type'       => 'post',
         'hierarchical'          => false,
-        'supports'              => array('title', 'editor', 'thumbnail'), 
+        'supports'              => array('title', 'editor', 'thumbnail', 'excerpt'), 
         'has_archive'           => false,
         'rewrite'               => array('slug' => 'designer'),
         'show_in_rest'          => false,

@@ -73,10 +73,10 @@ function mf_footer() {
         </div>
 
 
-        <div class="p-5">
+        <div class="py-3">
             <div class="container text-center">
-                <hr style="margin: 0"/>
-                <p class="py-3" style="margin: 0;">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
+                <hr />
+                <p class="" style="margin: 0;">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
             </div>
         </div>
     </footer>

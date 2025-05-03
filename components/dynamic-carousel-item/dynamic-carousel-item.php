@@ -2,7 +2,7 @@
 function mf_dynamic_carousel_item($component_data){
     $current_post = get_post($component_data);
     $post_image = get_the_post_thumbnail($component_data, 'full');
-    $post_content = $current_post->post_content;
+    $post_content = $current_post->post_excerpt;
     $post_title = $current_post->post_title;
     $post_permalink = get_post_permalink($component_data);
 
