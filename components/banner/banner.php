@@ -1,25 +1,6 @@
 <?php
 
 function mf_banner($component_data){   
-
-    function set_banner_background($banner_item){
-        $banner_background = "";
-        $background_color = $banner_item['background_color'];
-        $background_image = $banner_item['background_img'];
-
-        switch($banner_item['background']){
-            case "color":
-                $banner_background = "background: $background_color";
-                break;
-            case "image":
-                $banner_background = "background: url($background_image)";
-                break;
-            default:
-                $banner_background = "background: var(--light_gray_color)";
-        }
-
-        return $banner_background;
-    }
     ?>
     <section class="splide mf_banner">
         <div class="splide__track">
@@ -62,3 +43,23 @@ function mf_banner($component_data){
         </div>
     </section>
 <?php }
+
+
+function set_banner_background($banner_item){
+    $banner_background = "";
+    $background_color = $banner_item['background_color'];
+    $background_image = $banner_item['background_img'];
+
+    switch($banner_item['background']){
+        case "color":
+            $banner_background = "background: $background_color";
+            break;
+        case "image":
+            $banner_background = "background: url($background_image)";
+            break;
+        default:
+            $banner_background = "background: var(--light_gray_color)";
+    }
+
+    return $banner_background;
+}

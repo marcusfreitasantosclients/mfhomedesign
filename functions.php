@@ -66,9 +66,10 @@ function import_component($component_name, $component_data) {
 
         // Enqueue PHP
         $component_php = THEME_DIR . '/components/'.$component_name.'/'.$component_name.'.php';
-        if (file_exists($component_php)) {
+        if (file_exists($component_php)) {            
             include_once($component_php);
             $component_render = str_replace('-', '_', $component_render);
+            
             if(function_exists($component_render)) echo $component_render($component_data[$component_name]);
         }
     }

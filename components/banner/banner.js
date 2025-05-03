@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
       type: "loop",
       perPage: 1,
       autoplay: bannerItems.length > 1,
-      interval: 5000000,
+      interval: 5000,
       pagination: bannerItems.length > 1,
       arrows: bannerItems.length > 1,
     }).mount();
