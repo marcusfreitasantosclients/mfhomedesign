@@ -1,15 +1,7 @@
 <?php
 get_header();
 
-import_component('button', [
-    'button' => [
-        'text'     => 'Clique aqui',
-        'url'      =>    'https://google.com',
-        'target'   => '_blank',
-        'type'     => 'primary' 
-    ]
-    ]);
-$components = get_field('component_select');
+$components = get_field('component_select', 2);
 if($components){
     foreach ($components as $component) {
         $component_name = $component['model'];
