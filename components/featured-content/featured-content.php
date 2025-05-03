@@ -3,7 +3,7 @@ function mf_featured_content($component_data){
     ?>
     <section class="py-5 my-5">
         <div class='container'>
-            <div class='row'>
+            <div class='row align-items-center'>
                 <div class='col-md-4'>
                     <?php import_component('simple-text', [
                         'simple-text' => [
@@ -15,7 +15,19 @@ function mf_featured_content($component_data){
                 </div>
 
                 <div class='col-md-8'>
-                    content
+                    <div class="row">
+                        <?php if($component_data['featured_posts']){
+                            foreach($component_data['featured_posts'] as $current_post){ ?>
+                                <div class="col-md-4 my-2">
+                                    <?php
+                                    import_component('product-card', [
+                                        'product-card' => $current_post,
+                                    ]);
+                                    ?>                                
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>

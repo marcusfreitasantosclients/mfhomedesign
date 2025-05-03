@@ -75,6 +75,7 @@ function import_component($component_name, $component_data) {
     }
 }
 
+
 function query_cpt_based_on_type($type){
     $query = new WP_Query( [
         'post_type' => $type,
@@ -83,5 +84,25 @@ function query_cpt_based_on_type($type){
     ]);
 
     return $query->posts;
+}
+
+
+function get_product_categories($category_ids=[]){
+    $categories_to_include = $category_ids ? $category_ids : "";
+    $product_cat_args = array(
+        'taxonomy'   => 'product_cat',
+        'orderby'    => 'menu_order',
+        'order'      => 'ASC',
+        'include'   =>  $categories_to_include,
+        //'exclude' => array(15),
+        'hide_empty' => true
+    );
+    $product_categories = get_terms($product_cat_args);
+    
+    $filtered_categories = array_filter($product_categories, function($category) {
+        return $category->parent == 0;
+    });
+    
+    return $filtered_categories;
 }
 ?>
