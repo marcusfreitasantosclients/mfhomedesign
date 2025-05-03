@@ -1,0 +1,8 @@
+.mf_simple_text h2 {
+  font-family: "Lato-Bold";
+}
+
+.mf_simple_text p {
+  font-family: "Lato-Regular";
+  font-size: var(--font-size-base);
+}
