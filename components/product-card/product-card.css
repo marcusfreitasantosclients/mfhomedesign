@@ -18,6 +18,11 @@
 .mf_product_card_img img {
   width: 100%;
   object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.mf_product_card_img img:hover {
+  transform: translateX(-10px);
 }
 
 .mf_product_card_info h3 {
