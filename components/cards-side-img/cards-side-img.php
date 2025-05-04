@@ -1,5 +1,18 @@
 <?php
 function mf_cards_side_img($component_data){
+    $show_dynamic_content = $component_data['show_dynamic_content'];
+    $cards_content = [];
+
+    if(isset($show_dynamic_content) && $show_dynamic_content[0] == "yes"){
+        foreach($component_data['cards_with_dynamic_content'] as $dynamic_content){
+            $current_post = get_post($dynamic_content, ARRAY_A);
+            $cards_content[] = $current_post;
+        }
+
+    }else{
+        $cards_content = $component_data['cards'];
+    }
+
     ?>
     <section class='py-5 bg-light'>
         <div class='container'>
@@ -12,18 +25,20 @@ function mf_cards_side_img($component_data){
                         ]
                     ]) ?>
 
-                    <?php if(is_array($component_data['cards']) && !empty($component_data['cards'])){ ?>
+                    <?php if(is_array($cards_content) && !empty($cards_content)){ ?>
                         <div class="row">
-                            <?php foreach($component_data['cards'] as $icon_card){ ?>
+                            <?php foreach($cards_content as $card){ 
+                                $icon_card_content = [
+                                    'title' => isset($card['title']) ? $card['title'] : $card['post_title'],
+                                    'text' => isset($card['text']) ? $card['text']  : $card['post_content'],
+                                    'icon' => isset($card['icon']) ? $card['icon'] : get_the_post_thumbnail_url($card['ID'])
+                                ];
+
+                                ?>
                                 <div class="col-md-6 my-3">
-                                    <div class="mf_cards_side_img_icon_card d-flex flex-column gap-2">
-                                        <div class="position-relative" style="width: 40px">
-                                            <img width="40px" class='img-fluid position-relative' src="<?= $icon_card['icon'] ?>" alt="<?= $icon_card['title'] ?>"  />
-                                            <div class="mf_cards_side_img_icon_bg_element"></div>
-                                        </div>
-                                        <h3><?= $icon_card['title'] ?></h3>
-                                        <p><?= $icon_card['text'] ?></p> 
-                                    </div>                   
+                                    <?php import_component('icon-card', [
+                                        'icon-card' =>  $icon_card_content
+                                    ]);?>                 
                                 </div>
                             <?php } ?>
                         </div>
