@@ -2,7 +2,7 @@
 function mf_contact_form($component_data){    
     $side_images = $component_data['side_images'];
     ?>
-    <section class="py-5 my-5">
+    <section class="py-5 my-5 mf_contact_form">
         <div class='container'>
             <div class='row'>
                 <div class='col-md-6'>

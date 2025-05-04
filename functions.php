@@ -16,6 +16,8 @@ require_once('inc/general-setup/general-setup.php');
 require_once('inc/custom-post-types/cpt-services.php');
 require_once('inc/custom-post-types/cpt-designers.php');
 require_once('inc/custom-post-types/cpt-gallery.php');
+require_once('api-routes.php');
+
 
 
 
@@ -94,7 +96,6 @@ function get_product_categories($category_ids=[]){
         'orderby'    => 'menu_order',
         'order'      => 'ASC',
         'include'   =>  $categories_to_include,
-        //'exclude' => array(15),
         'hide_empty' => true
     );
     $product_categories = get_terms($product_cat_args);
@@ -104,5 +105,54 @@ function get_product_categories($category_ids=[]){
     });
     
     return $filtered_categories;
+}
+
+
+function send_form_data(WP_REST_Request $request){
+    $form_data = json_decode($request->get_body(), true);
+    $email_to = get_option('site_email');
+    $headers[] = 'From: ' . get_bloginfo('name') . '<' . $email_to . '>';
+
+    $email_body = '
+    <html lang="en">
+      <body>
+        <table style="width: 100%; font-family: Lato, sans-serif;">
+          <thead style="background: #2b3a4d; text-align: left;">
+            <tr>
+              <th colspan="2" style="padding: 20px; color: white;">Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
+              <td style="padding: 10px; color: #202020; width: 100px;"><b>Name:</b></td>
+              <td style="padding: 10px; color: #202020;">' . htmlspecialchars($form_data['name']) . '</td>
+            </tr>
+            <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
+              <td style="padding: 10px; color: #202020; width: 100px;"><b>E-mail</b></td>
+              <td style="padding: 10px; color: #202020;">' . htmlspecialchars($form_data['email']) . '</td>
+            </tr>
+            <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
+              <td style="padding: 10px; color: #202020; width: 100px;"><b>Subject</b></td>
+              <td style="padding: 10px; color: #202020;">' . htmlspecialchars($form_data['subject']) . '</td>
+            </tr>
+            <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
+              <td style="padding: 10px; color: #202020; width: 100px;"><b>Message</b></td>
+              <td style="padding: 10px; color: #202020;">' . nl2br(htmlspecialchars($form_data['message'])) . '</td>
+            </tr>
+          </tbody>
+          <tfoot style="text-align: left;">
+            <tr>
+              <th colspan="2" style="font-size: 10px; color: #005c9b; font-weight: 100; margin-top: 30px; display: block;">
+                Message sent from <a href="' . site_url() . '" target="_blank">' . get_bloginfo('name') . '</a>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+      </body>
+    </html>';
+
+    //wp_mail($email_to, $form_data['subject'], $email_body, $headers);
+    
+    return $headers;
 }
 ?>
