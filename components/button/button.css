@@ -1,6 +1,6 @@
 .mf_default_btn {
   border-radius: 50px !important;
-  padding: var(--font-size-xs) var(--font-size-xl);
+  padding: 8px var(--font-size-xl);
 }
 
 .mf_default_btn.btn-primary.bg-dark {
