@@ -125,19 +125,19 @@ function send_form_data(WP_REST_Request $request){
           <tbody>
             <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
               <td style="padding: 10px; color: #202020; width: 100px;"><b>Name:</b></td>
-              <td style="padding: 10px; color: #202020;">' . htmlspecialchars($form_data['name']) . '</td>
+              <td style="padding: 10px; color: #202020;">' . esc_html($form_data['name']) . '</td>
             </tr>
             <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
               <td style="padding: 10px; color: #202020; width: 100px;"><b>E-mail</b></td>
-              <td style="padding: 10px; color: #202020;">' . htmlspecialchars($form_data['email']) . '</td>
+              <td style="padding: 10px; color: #202020;">' . esc_html($form_data['email']) . '</td>
             </tr>
             <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
               <td style="padding: 10px; color: #202020; width: 100px;"><b>Subject</b></td>
-              <td style="padding: 10px; color: #202020;">' . htmlspecialchars($form_data['subject']) . '</td>
+              <td style="padding: 10px; color: #202020;">' . esc_html($form_data['subject']) . '</td>
             </tr>
             <tr style="display: block; border-bottom: 1px solid #e5e5e5;">
               <td style="padding: 10px; color: #202020; width: 100px;"><b>Message</b></td>
-              <td style="padding: 10px; color: #202020;">' . nl2br(htmlspecialchars($form_data['message'])) . '</td>
+              <td style="padding: 10px; color: #202020;">' . nl2br(esc_html($form_data['message'])) . '</td>
             </tr>
           </tbody>
           <tfoot style="text-align: left;">
