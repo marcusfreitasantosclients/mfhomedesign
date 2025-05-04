@@ -84,6 +84,13 @@ function render_general_theme_settings_page() {
                         </td>
                     </tr>
                     <tr valign="top">
+                        <th scope="row">Address</th>
+                        <td>
+                            <input type="text" name="site_address" id="site_address" value="<?= get_option('site_address'); ?>" placeholder="" />
+                            <p class="description">Insert the company address.</p>
+                        </td>
+                    </tr>
+                    <tr valign="top">
                         <th scope="row">Whatsapp</th>
                         <td>
                             <input type="text" name="site_whatsapp" id="site_whatsapp" value="<?= get_option('site_whatsapp'); ?>" placeholder="55110000999" />
@@ -169,6 +176,7 @@ function register_theme_settings() {
     $settings = [
         'site_footer_text',
         'site_email',
+        'site_address',
         'site_whatsapp',
         'site_favicon',
         'site_logo_header',
