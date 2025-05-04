@@ -1,0 +1,23 @@
+.mf_cta_section_img_wrapper {
+  height: 600px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mf_cta_section_img_wrapper img {
+  width: 120%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.mf_cta_section_img_wrapper img:hover {
+  transform: translateX(-10px);
+}
+
+@media (max-width: 60rem) {
+  .mf_cta_section_img_wrapper {
+    height: 200px;
+  }
+}

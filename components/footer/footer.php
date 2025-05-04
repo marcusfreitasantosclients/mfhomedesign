@@ -27,7 +27,7 @@ function mf_footer() {
                     <p><?= get_option('site_footer_text'); ?></p>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mt-3">
                     <h5>Sitemap</h5>
 
                     <?php foreach($menu_items as $menu_item){ ?>
@@ -39,7 +39,7 @@ function mf_footer() {
                     <?php } ?>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mt-3">
                     <h5>Our Services</h5>
 
                     <?php foreach($services as $service){ ?>
@@ -50,7 +50,8 @@ function mf_footer() {
                         </div>
                     <?php } ?>
                 </div>
-                <div class="col-md-3 social__links">
+
+                <div class="col-md-3 social__links mt-3">
                     <h5>Contact us</h5>
 
                     <?php if(get_option('site_email')){ ?>
