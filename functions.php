@@ -17,10 +17,12 @@ require_once('inc/custom-post-types/cpt-services.php');
 require_once('inc/custom-post-types/cpt-designers.php');
 require_once('inc/custom-post-types/cpt-gallery.php');
 require_once('api-routes.php');
+global $version;
 
 
 function theme_enqueue_styles_and_scripts() {
-    $version = 1.0;
+    global $version;
+    $version = 1.1;
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
@@ -56,6 +58,7 @@ add_action( 'after_setup_theme', 'menus_setup' );
 
 //Import files components
 function import_component($component_name, $component_data) {
+    global $version;
     $component_path = THEME_DIR . '/components/' . $component_name;
     $component_render = 'mf_' . $component_name;
 
@@ -63,13 +66,13 @@ function import_component($component_name, $component_data) {
         // Enqueue CSS
         $component_css = THEME_DIR . '/components/'.$component_name.'/'.$component_name.'.css';
         if (file_exists($component_css)) {
-            wp_enqueue_style('component-' . $component_css, THEME_URL .'/components/'.$component_name.'/'.$component_name.'.css');
+            wp_enqueue_style('component-' . $component_css, THEME_URL .'/components/'.$component_name.'/'.$component_name.'.css', [], $version);
         }
 
         // Enqueue JS
         $component_js = THEME_DIR . '/components/'.$component_name.'/'.$component_name.'.js';
         if (file_exists($component_js)) {
-            wp_enqueue_script('component-' . $component_js, THEME_URL .'/components/'.$component_name.'/'.$component_name.'.js', array(), null, true);
+            wp_enqueue_script('component-' . $component_js, THEME_URL .'/components/'.$component_name.'/'.$component_name.'.js', [], $version, true);
         }
 
         // Enqueue PHP

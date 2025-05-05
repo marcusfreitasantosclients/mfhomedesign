@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-      console.log(response.json());
-
       if (response.status === 200) {
         alert("Your message was received");
       } else {
