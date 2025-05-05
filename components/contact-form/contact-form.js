@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const contactForms = [...document.querySelectorAll(".mf_contact_form")];
 
-  const sendFormData = async (formData) => {
+  const sendFormData = async (formData, form) => {
+    const loadingSpinner = form.querySelector(".mf_loading_spinner");
+
     try {
+      loadingSpinner.style.display = "flex";
+
       const response = await fetch(
         `${current_user_data.site_url}/wp-json/forms/v2/send-form-data`,
         {
@@ -14,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(response);
     } catch (e) {
       console.log(e);
+    } finally {
+      loadingSpinner.style.display = "none";
     }
   };
 
@@ -28,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         requestBody[field] = value;
       });
 
-      sendFormData(requestBody);
+      sendFormData(requestBody, form);
     });
   });
 });

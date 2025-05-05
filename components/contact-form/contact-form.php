@@ -5,7 +5,7 @@ function mf_contact_form($component_data){
     <section class="py-5 my-5">
         <div class='container'>
             <div class='row'>
-                <div class='col-md-6'>
+                <div class='col-md-6 '>
                     <?php import_component('simple-text', [
                         'simple-text' => [
                             'title' => $component_data['title'],
@@ -13,7 +13,9 @@ function mf_contact_form($component_data){
                         ]
                     ]) ?>
 
-                    <form class="mf_contact_form">
+
+                    <form class="mf_contact_form position-relative mt-5">
+                        <?php import_component('loading-spinner', []); ?>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" name="name" class="form-control" id="name" placeholder="Your name">
