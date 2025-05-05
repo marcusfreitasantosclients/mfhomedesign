@@ -15,9 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-      console.log(response);
+      console.log(response.json());
+
+      if (response.status === 200) {
+        alert("Your message was received");
+      } else {
+        alert("Oops! Something is wrong, try again later.");
+      }
     } catch (e) {
       console.log(e);
+      alert("Oops! Something is wrong, try again later.");
     } finally {
       loadingSpinner.style.display = "none";
     }
