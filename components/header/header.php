@@ -59,14 +59,14 @@ function mf_header($component_data){
                         ?>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= wc_get_endpoint_url('myaccount') ?>">
+                            <a class="nav-link" href="<?= wc_get_page_permalink( 'myaccount' ); ?>">
                                 <span class="d-block d-md-none">Minha conta</span>
                                 <box-icon name='user' class="d-none d-md-block" color="var(--primary_color_dark)"></box-icon>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= wc_get_endpoint_url('cart') ?>"><box-icon name='cart' color="var(--primary_color_dark)" ></box-icon></a>
+                            <a class="nav-link" href="<?= wc_get_page_permalink('cart') ?>"><box-icon name='cart' color="var(--primary_color_dark)" ></box-icon></a>
                         </li>
 
                         <li class="nav-item">
