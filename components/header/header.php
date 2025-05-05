@@ -73,7 +73,6 @@ function mf_header($component_data){
                             <?php import_component('searchform', ['searchform' => []]); ?>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>

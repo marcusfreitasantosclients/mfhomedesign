@@ -2,7 +2,7 @@
 function mf_contact_form($component_data){    
     $side_images = $component_data['side_images'];
     ?>
-    <section class="py-5 my-5 mf_contact_form">
+    <section class="py-5 my-5">
         <div class='container'>
             <div class='row'>
                 <div class='col-md-6'>
@@ -13,38 +13,28 @@ function mf_contact_form($component_data){
                         ]
                     ]) ?>
 
-                    <form>
+                    <form class="mf_contact_form">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Your name">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your name">
                         </div>
                         
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
                         </div>
                         
                         <div class="mb-3">
                             <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" placeholder="Subject">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
                         </div>
                         
                         <div class="mb-3">
                             <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Your message"></textarea>
+                            <textarea class="form-control" id="message" rows="5" name="message" placeholder="Your message"></textarea>
                         </div>
                         
-                        <?php
-                        import_component('button', [
-                            'button' => [
-                                'text'     => 'Send message',
-                                'url'      => '#',
-                                'target'   => '_blank',
-                                'type'     => 'primary',
-                                'color'    => 'dark'
-                            ]
-                        ]); 
-                        ?>
+                        <button type="submit" class="mf_default_btn btn btn-primary bg-dark">Send message</button>
                     </form>
                 </div>
 

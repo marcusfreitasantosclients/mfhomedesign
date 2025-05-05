@@ -19,8 +19,6 @@ require_once('inc/custom-post-types/cpt-gallery.php');
 require_once('api-routes.php');
 
 
-
-
 function theme_enqueue_styles_and_scripts() {
     $version = 1.0;
     //CSS
@@ -36,6 +34,14 @@ function theme_enqueue_styles_and_scripts() {
     wp_enqueue_script('main-js', THEME_URL . '/assets/js/main.js', ['jquery'], $version);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles_and_scripts');
+
+
+function send_data_to_main_js() {
+  wp_localize_script( 'main-js', 'current_user_data', [
+    'site_url' => site_url(),
+  ] );
+}
+add_action( 'wp_enqueue_scripts', 'send_data_to_main_js' );
 
 
 function menus_setup() {
@@ -151,8 +157,26 @@ function send_form_data(WP_REST_Request $request){
       </body>
     </html>';
 
-    //wp_mail($email_to, $form_data['subject'], $email_body, $headers);
-    
-    return $headers;
+    $email_sent = wp_mail($email_to, $form_data['subject'], $email_body, $headers);
+
+    if ( $email_sent ) {
+      return new WP_REST_Response(
+        array(
+          'status' => 200,
+          'body_response' => 'E-mail sent succesfully',
+          'email_status' => 'sent'
+        ),
+        200
+      );
+    } else {
+      return new WP_Error(
+        'email_failed',
+        'Failed to send email.',
+        array(
+          'status' => 500,
+          'email_status' => 'not_sent'
+        )
+      );
+    }   
 }
 ?>
