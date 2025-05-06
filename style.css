@@ -71,7 +71,8 @@ a:hover {
   background-color: var(--primary_color_light) !important;
 }
 
-.form-control {
+.form-control,
+.woocommerce-Input {
   border-radius: 12px;
   padding: 12px;
   background-color: var(--primary_color_light) !important;
@@ -90,4 +91,15 @@ textarea:focus-visible {
   outline: 2px solid var(--primary_color) !important;
   background: none !important;
   background-color: transparent !important;
+}
+
+/* WOO */
+.woocommerce form.login {
+  border: 1px solid var(--light_gray_color);
+  border-radius: 12px;
+}
+
+.woocommerce form.login a,
+.woocommerce form.login h2 {
+  color: var(--primary_color);
 }

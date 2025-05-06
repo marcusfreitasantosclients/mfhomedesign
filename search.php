@@ -7,7 +7,7 @@
 
 <section class="py-5">
     <div class="container">
-        <h1 class="text-center p-5">Resultados de busca para: <?php echo esc_html($searchTerm); ?></h1>
+        <h1 class="text-center p-5">Search results for: <strong><?php echo esc_html($searchTerm); ?></strong></h1>
         <div class="row gx-5">
 				<?php if ( have_posts() ) : ?>
 						<?php
@@ -17,10 +17,12 @@
                             $post_type = get_post_type($post);
 							?>
 
-                            <div class="col-md-4 mb-5">
+                            <div class="col-md-3 mb-5">
                                 <?php if($post_type === "product"){ ?>
                                     <?php $product = wc_get_product($post->ID);?>
-                                        <?php echo $product->get_title(); ?>
+                                        <?php import_component("product-card", [
+                                            "product-card" => $product
+                                        ]); ?>
                                     <?php }else{ ?>
                                         <?php echo $post->post_title; ?>
                                 <?php } ?>
@@ -30,7 +32,7 @@
 
 				<?php else : ?>
                     <div  class="col-12 text-center p-5">
-                        <span>Nada encontrado.</span>
+                        <span>Nothing found.</span>
                     </div>
 				<?php endif; ?>
         </div>
