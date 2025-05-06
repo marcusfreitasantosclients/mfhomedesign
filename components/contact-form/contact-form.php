@@ -2,7 +2,7 @@
 function mf_contact_form($component_data){    
     $side_images = $component_data['side_images'];
     ?>
-    <section class="py-5 my-5">
+    <section class="py-5">
         <div class='container'>
             <div class='row'>
                 <div class='col-md-6 '>
@@ -16,14 +16,17 @@ function mf_contact_form($component_data){
 
                     <form class="mf_contact_form position-relative mt-5">
                         <?php import_component('loading-spinner', []); ?>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Your name">
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your name">
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+                            </div>
                         </div>
                         
                         <div class="mb-3">
@@ -40,7 +43,7 @@ function mf_contact_form($component_data){
                     </form>
                 </div>
 
-                <div class='col-md-6'>
+                <div class='col-md-6 mt-3 mt-md-0'>
                     <div class="row">
                         <?php if(isset($side_images) && !empty($side_images)){
                             $count = 0;
