@@ -182,4 +182,14 @@ function send_form_data(WP_REST_Request $request){
       );
     }   
 }
+
+function redirect_from_designer_single_page_to_store(){
+  if(is_single() && get_post_type() == "designer"){
+    global $post;
+    $current_designer_slug = $post->post_name;
+    wp_redirect(wc_get_page_permalink("shop") . "/?designer_name=$current_designer_slug");
+    exit;
+  }
+}
+add_action("template_redirect", "redirect_from_designer_single_page_to_store");
 ?>
