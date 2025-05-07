@@ -22,7 +22,7 @@ global $version;
 
 function theme_enqueue_styles_and_scripts() {
     global $version;
-    $version = "1.1.6";
+    $version = "1.1.7";
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
@@ -201,7 +201,7 @@ function order_designers_by_title($query) {
       is_post_type_archive('designer')
   ) {
       $query->set('orderby', 'title');
-      $query->set('order', 'ASC'); // Or 'DESC' if you want reverse
+      $query->set('order', 'ASC');
   }
 }
 add_action('pre_get_posts', 'order_designers_by_title');
