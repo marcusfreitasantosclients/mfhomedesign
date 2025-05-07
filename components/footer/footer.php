@@ -10,7 +10,9 @@ function mf_footer() {
 
     $services = query_cpt_based_on_type('service');
     $social_links = [
-        'whatsapp' => 'http://wa.me/' . get_option('site_whatsapp'),
+        'whatsapp' => get_option('site_whatsapp') 
+            ? 'http://wa.me/' . preg_replace('/\D+/', '', get_option('site_whatsapp')) 
+            : null,        
         'facebook' => get_option('site_facebook'),
         'instagram' => get_option('site_instagram'),
         'twitter' => get_option('site_twitter'),
@@ -54,8 +56,15 @@ function mf_footer() {
                 <div class="col-md-3 social__links mt-3">
                     <h5>Contact us</h5>
 
+                    <?php if(get_option('site_phone')){ ?>
+                        <a href="tel:<?= get_option('site_phone') ?>" class="d-flex align-items-center text-decoration-none mb-2" target="_blank">
+                            <box-icon size="sm" name="phone" color="var(--primary_color_dark)"></box-icon>    
+                            <span><?= get_option('site_phone') ?></span>
+                        </a>
+                    <?php } ?>
+
                     <?php if(get_option('site_email')){ ?>
-                        <a href="mailto:<?= get_option('site_email') ?>" class="d-flex align-items-center text-decoration-none mb-2">
+                        <a href="mailto:<?= get_option('site_email') ?>" class="d-flex align-items-center text-decoration-none mb-2" target="_blank">
                             <box-icon size="sm" name="envelope" color="var(--primary_color_dark)"></box-icon>    
                             <span><?= get_option('site_email') ?></span>
                         </a>
@@ -70,7 +79,7 @@ function mf_footer() {
 
                     <ul class="list-unstyled d-flex flex-row align-items-center gap-2 mt-3">
                         <?php foreach($social_links as $key => $link) { ?>
-                            <?php if($link) { ?>
+                            <?php if(isset($link) && $link !== "") { ?>
                                 <li>
                                     <a href="<?= $link ?>" target="_blank">
                                         <box-icon type='logo' name="<?= $key ?>" color="var(--primary_color_dark)"></box-icon>

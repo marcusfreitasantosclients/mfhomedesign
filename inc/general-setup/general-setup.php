@@ -91,6 +91,13 @@ function render_general_theme_settings_page() {
                         </td>
                     </tr>
                     <tr valign="top">
+                        <th scope="row">Phone number</th>
+                        <td>
+                            <input type="text" name="site_phone" id="site_phone" value="<?= get_option('site_phone'); ?>" placeholder="949.702.1093" />
+                            <p class="description">Insert the Whatsapp number. Only numbers.</p>
+                        </td>
+                    </tr>
+                    <tr valign="top">
                         <th scope="row">Whatsapp</th>
                         <td>
                             <input type="text" name="site_whatsapp" id="site_whatsapp" value="<?= get_option('site_whatsapp'); ?>" placeholder="55110000999" />
@@ -177,6 +184,7 @@ function register_theme_settings() {
         'site_footer_text',
         'site_email',
         'site_address',
+        'site_phone',
         'site_whatsapp',
         'site_favicon',
         'site_logo_header',
