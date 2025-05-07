@@ -5,15 +5,29 @@ $post_slug = $post->post_name;
 $gallery_items = get_field('images');
 
 ?>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <?php import_component('simple-text', [
+                        'simple-text' => [
+                            'title' => get_the_title(),
+                            'text' => get_the_content()
+                        ]
+                ]) ?>
+            </div>
+
+            <div class="col-md-8">
+                <div class="mf_gallery_featured_img_wrapper">
+                    <img class="" src="<?= get_the_post_thumbnail_url(get_the_ID()) ?>" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="py-5">
     <div class="container">
-        <div class="col-md-12">
-            <?php import_component('simple-text', [
-                    'simple-text' => [
-                        'title' => get_the_title(),
-                    ]
-            ]) ?>
-        </div>
 
         <div class="mf_gallery_container d-grid gap-1">
             <?php foreach($gallery_items as $image){ ?>
@@ -23,11 +37,8 @@ $gallery_items = get_field('images');
                     </a>
                 </div>
             <?php } ?>
-        </div>  
-    </div>
+        </div>
+    </div>  
 </section>
-
-
-
 
 <?php get_footer(); ?>

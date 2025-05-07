@@ -125,6 +125,22 @@ textarea:focus-visible {
   object-fit: cover;
 }
 
+.mf_gallery_featured_img_wrapper {
+  border-radius: 24px;
+  overflow: hidden;
+  max-height: 600px;
+}
+
+.mf_gallery_featured_img_wrapper img {
+  width: 120%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.mf_gallery_featured_img_wrapper img:hover {
+  transform: translateX(-10px);
+}
+
 @media (max-width: 60rem) {
   .mf_gallery_container {
     grid-template-columns: 1fr 1fr;

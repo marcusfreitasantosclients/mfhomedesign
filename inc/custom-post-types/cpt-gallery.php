@@ -34,7 +34,7 @@ function register_cpt_gallery() {
         'menu_icon'             => 'dashicons-format-gallery',
         'capability_type'       => 'post',
         'hierarchical'          => false,
-        'supports'              => array('title', 'thumbnail'), 
+        'supports'              => array('title', 'thumbnail', 'editor', 'excerpt'), 
         'has_archive'           => true,
         'rewrite'               => array('slug' => 'galleries'),
         'show_in_rest'          => false,

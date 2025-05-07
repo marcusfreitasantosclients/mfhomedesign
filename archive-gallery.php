@@ -20,7 +20,7 @@
                     "full-width-image-card" => [
                         "title"     => $current_post->post_title,
                         "permalink" => get_post_permalink(),
-                        "content"   => $current_post->post_content,
+                        "content"   => $current_post->post_excerpt,
                         "image"     => get_the_post_thumbnail_url(get_the_ID()),
                     ]
                 ])
