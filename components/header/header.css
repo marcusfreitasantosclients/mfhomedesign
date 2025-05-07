@@ -11,6 +11,7 @@
 
 header a {
   color: var(--primary_color_dark) !important;
+  font-family: "Lato-Light";
 }
 
 header li.active a {

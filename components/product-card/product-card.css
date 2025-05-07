@@ -36,7 +36,7 @@
 .mf_product_card_price {
   text-decoration: none;
   color: var(--primary_color);
-  font-family: "Lato-Regular";
+  font-family: "Lato-Light";
   font-size: var(--font-size-base);
 }
 

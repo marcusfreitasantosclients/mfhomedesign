@@ -44,7 +44,7 @@ function mf_footer() {
 
                     <?php foreach($services as $service){ ?>
                         <div class="mb-2 w-100">
-                            <a href="" class=" text-decoration-none">
+                            <a  class=" text-decoration-none">
                                 <?= $service->post_title; ?>
                             </a>
                         </div>
@@ -87,7 +87,7 @@ function mf_footer() {
         <div class="py-3">
             <div class="container text-center">
                 <hr />
-                <p class="" style="margin: 0;">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
+                <span class="" style="margin: 0;">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</span>
             </div>
         </div>
     </footer>
