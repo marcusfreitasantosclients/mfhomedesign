@@ -72,9 +72,11 @@ function mf_header($component_data){
                             <a class="nav-link" href="<?= wc_get_page_permalink('cart') ?>"><box-icon name='cart' color="var(--primary_color_dark)" ></box-icon></a>
                         </li>
 
-                        <li class="nav-item">
-                            <?php import_component('searchform', ['searchform' => []]); ?>
-                        </li>
+                        <?php if(!wp_is_mobile()){ ?>
+                            <li class="nav-item">
+                                <?php import_component('searchform', ['searchform' => []]); ?>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
