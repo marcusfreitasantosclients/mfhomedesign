@@ -20,7 +20,7 @@
 }
 
 .mf_horizontal_card_content_wrapper h2 {
-  font-family: "Lato-Bold";
+  font-family: "Lato-Regular";
   font-size: var(--font-size-2xl);
   color: var(--primary_color_dark);
 }

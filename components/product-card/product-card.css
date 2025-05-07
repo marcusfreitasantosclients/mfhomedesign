@@ -28,7 +28,7 @@
 .mf_product_card_info h3 {
   text-decoration: none;
   color: var(--text_color);
-  font-family: "Lato-Bold";
+  font-family: "Lato-Regular";
   font-size: var(--font-size-base);
   margin: 0;
 }

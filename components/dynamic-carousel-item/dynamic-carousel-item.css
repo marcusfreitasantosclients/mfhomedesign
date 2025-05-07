@@ -7,7 +7,7 @@
 }
 
 .mf_dynamic_carousel_item h3 {
-  font-family: "Lato-Bold";
+  font-family: "Lato-Regular";
   font-size: var(--font-size-xl);
   color: var(--text_color);
   text-transform: uppercase;
