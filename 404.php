@@ -14,7 +14,7 @@
             'button' => [
                 'text'     => "← Back to Home",
                 'url'      => esc_url(home_url('/')),
-                'target'   => '_blank',
+                'target'   => '_self',
                 'type'     => 'primary',
                 'color'    => 'dark'
             ]

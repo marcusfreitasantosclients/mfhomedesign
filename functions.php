@@ -27,7 +27,7 @@ function theme_enqueue_styles_and_scripts() {
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
     wp_enqueue_style('splide-css', THEME_URL . '/assets/libs/splide/css/splide.min.css', [], $version);
-    wp_enqueue_style('theme-style', get_stylesheet_uri(), [], $version);
+    wp_enqueue_style('theme-style', get_stylesheet_uri(), ['bootstrap-css'], $version);
 
     //JS
     wp_enqueue_script('bootstrap-js', THEME_URL . '/assets/libs/bootstrap/js/bootstrap.bundle.min.js', ['jquery'], $version);
