@@ -192,4 +192,19 @@ function redirect_from_designer_single_page_to_store(){
   }
 }
 add_action("template_redirect", "redirect_from_designer_single_page_to_store");
+
+
+function order_designers_by_title($query) {
+  if (
+      !is_admin() && 
+      $query->is_main_query() && 
+      is_post_type_archive('designer')
+  ) {
+      $query->set('orderby', 'title');
+      $query->set('order', 'ASC'); // Or 'DESC' if you want reverse
+  }
+}
+add_action('pre_get_posts', 'order_designers_by_title');
+
+
 ?>
