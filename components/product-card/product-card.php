@@ -21,7 +21,7 @@
                 </h3>
 
                 <span class="mf_product_card_price">
-                    Startging at <?= $currency_symbol . $product->get_price(); ?>
+                    Starting at <?= $currency_symbol . $product->get_price(); ?>
                 </span>
             </div>
         </a> 
