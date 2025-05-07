@@ -8,6 +8,11 @@ Version: 1.0
 */
 
 @font-face {
+  font-family: "Lato-Thin";
+  src: url(./assets/fonts/Lato-Thin.ttf);
+}
+
+@font-face {
   font-family: "Lato-Light";
   src: url(./assets/fonts/Lato-Light.ttf);
 }

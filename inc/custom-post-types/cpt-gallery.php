@@ -27,7 +27,7 @@ function register_cpt_gallery() {
     $args = array(
         'labels'                => $labels,
         'public'                => true,
-        'publicly_queryable'    => false,
+        'publicly_queryable'    => true,
         'show_ui'               => true,
         'show_in_menu'          => true,
         'menu_position'         => 5,
@@ -35,8 +35,8 @@ function register_cpt_gallery() {
         'capability_type'       => 'post',
         'hierarchical'          => false,
         'supports'              => array('title', 'thumbnail'), 
-        'has_archive'           => false,
-        'rewrite'               => array('slug' => 'gallery'),
+        'has_archive'           => true,
+        'rewrite'               => array('slug' => 'galleries'),
         'show_in_rest'          => false,
     );
 
