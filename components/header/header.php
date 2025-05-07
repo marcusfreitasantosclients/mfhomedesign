@@ -1,8 +1,10 @@
 <?php
 
 function mf_header($component_data){ 
+    global $post;
     $theme_location = 'header';
     $menu_items = [];
+    $post_slug = $post->post_name;
     
     if (($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
         $menu = get_term( $locations[$theme_location], 'nav_menu' );
@@ -38,17 +40,18 @@ function mf_header($component_data){
                         // Recursive function to render menu items
                         function render_menu_items($parent_id, $menu_tree) {
                             foreach ($menu_tree[$parent_id] ?? [] as $item) {
+                                $is_active = get_page_link() == $item->url ? " active " : "";
                                 $has_children = !empty($menu_tree[$item->ID]);
                                 $classes = implode(' ', $item->classes ?? []);
                                 if ($has_children) {
-                                    echo '<li class="nav-item dropdown ' . esc_attr($classes) . '">';
+                                    echo '<li class="nav-item dropdown ' . esc_attr($classes) . $is_active . '">';
                                     echo '<a class="nav-link dropdown-toggle" href="' . esc_url($item->url) . '" id="menu-item-' . $item->ID . '" role="button" data-bs-toggle="dropdown" aria-expanded="false" target="' . esc_attr($item->target) . '">' . esc_html($item->title) . '</a>';
                                     echo '<ul class="dropdown-menu" aria-labelledby="menu-item-' . $item->ID . '">';
                                     render_menu_items($item->ID, $menu_tree);
                                     echo '</ul>';
                                     echo '</li>';
                                 } else {
-                                    echo '<li class="nav-item ' . esc_attr($classes) . '">';
+                                    echo '<li class="nav-item ' . esc_attr($classes) . $is_active . '">';
                                     echo '<a class="nav-link" href="' . esc_url($item->title == "Logout" ? wp_logout_url(home_url()) : $item->url) . '" target="' . esc_attr($item->target) . '">' . esc_html($item->title) . '</a>';
                                     echo '</li>';
                                 }

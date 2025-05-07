@@ -13,6 +13,10 @@ header a {
   color: var(--primary_color_dark) !important;
 }
 
+header li.active a {
+  color: var(--secondary_color) !important;
+}
+
 @media (min-width: 992px) {
   .navbar .dropdown-menu {
     margin-top: 0;
