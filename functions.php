@@ -213,7 +213,7 @@ function add_woocommerce_support() {
 add_action('after_setup_theme', 'add_woocommerce_support');
 
 
-function get_filtered_content(WP_REST_Request $request) {
+function get_filtered_content($request) {
 
   $params = [
       'post_type'   => isset($request['post_type']) ? $request['post_type'] : 'product',
@@ -262,7 +262,47 @@ function get_filtered_content(WP_REST_Request $request) {
       'tax_query'      => $tax_query,
   ]);
 
-  return $products_found->posts;
+  return $products_found;
+}
+
+
+function render_dynamic_content_based_on_post_type(WP_REST_Request $request) {
+  $content_found = get_filtered_content($request);
+
+  $content_components = '';
+
+  if ($content_found->have_posts()) {
+      while ($content_found->have_posts()) {
+          $content_found->the_post();
+
+          ob_start(); // Start output buffering
+          ?>
+          <div class="col-md-3">
+              <?php
+                  import_component('product-card', [
+                      'product-card' => get_the_ID(),
+                  ]);
+              ?>
+          </div>
+          <?php
+          $content_components .= ob_get_clean(); // Append buffered output
+      }
+
+      wp_reset_postdata();
+  }
+
+  return rest_ensure_response([
+      'total'          => $content_found->found_posts,
+      'page'           => $request['page'],
+      //'results'        => $content_found->posts,
+      'content_cards'  => $content_components,
+  ]);
+}
+
+
+add_filter('loop_shop_per_page', 'custom_loop_shop_per_page', 20);
+function custom_loop_shop_per_page($cols) {
+    return 12;
 }
 
 

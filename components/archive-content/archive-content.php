@@ -13,7 +13,7 @@
                         <div class="my-5">
                             <h5>Categories</h5>
                         </div>
-                        
+
                         <?php
                         import_component('button', [
                             'button' => [
@@ -30,7 +30,7 @@
                     <?php import_component('loading-spinner', []); ?>
 
                     <?php if ( woocommerce_product_loop() ) : ?>
-                        <div class="row g-2">
+                        <div class="row g-2 filtered_content">
                         <?php while ( have_posts() ) : the_post(); ?>
                             <div class="col-md-3">
                                 <?php
