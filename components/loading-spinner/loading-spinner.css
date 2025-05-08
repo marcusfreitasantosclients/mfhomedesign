@@ -2,7 +2,7 @@
   display: none;
 }
 
-.loader {
+.mf_loader {
   width: 48px;
   height: 48px;
   border: 5px solid var(--primary_color_light);
