@@ -22,12 +22,12 @@ global $version;
 
 function theme_enqueue_styles_and_scripts() {
     global $version;
-    $version = "1.1.7";
+    $version = "1.1.8";
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
     wp_enqueue_style('splide-css', THEME_URL . '/assets/libs/splide/css/splide.min.css', [], $version);
-    wp_enqueue_style('theme-style', get_stylesheet_uri(), ['bootstrap-css'], $version);
+    wp_enqueue_style('theme-style', get_stylesheet_uri(), [], $version);
 
     //JS
     wp_enqueue_script('bootstrap-js', THEME_URL . '/assets/libs/bootstrap/js/bootstrap.bundle.min.js', ['jquery'], $version);
@@ -35,7 +35,7 @@ function theme_enqueue_styles_and_scripts() {
     wp_enqueue_script('splide-js', THEME_URL . '/assets/libs/splide/js/splide.min.js', ['jquery'], $version);
     wp_enqueue_script('main-js', THEME_URL . '/assets/js/main.js', ['jquery'], $version);
 }
-add_action('wp_enqueue_scripts', 'theme_enqueue_styles_and_scripts');
+add_action('wp_enqueue_scripts', 'theme_enqueue_styles_and_scripts', 30);
 
 
 function send_data_to_main_js() {
@@ -207,4 +207,8 @@ function order_designers_by_title($query) {
 add_action('pre_get_posts', 'order_designers_by_title');
 
 
+function add_woocommerce_support() {
+  add_theme_support('woocommerce');
+}
+add_action('after_setup_theme', 'add_woocommerce_support');
 ?>

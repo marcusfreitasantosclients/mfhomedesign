@@ -7,7 +7,7 @@
     $currency_symbol = get_woocommerce_currency_symbol();
     ?>
         <a class="mf_product_card" href=<?= "$site_url/produto/$product->slug";?>>
-            <div class="mf_product_card_cat d-flex gap-2 justify-content-center align-items-center py-3">
+            <div class="mf_product_card_cat d-flex gap-2 justify-content-center align-items-center py-3 text-center">
                 <?= $product_cats ?>
             </div>
 
@@ -15,14 +15,20 @@
                 <?= $product_image; ?>
             </div>
 
-            <div class="mf_product_card_info d-flex flex-row justify-content-between align-items-center">
+            <div class="mf_product_card_info d-flex flex-row justify-content-between align-items-end">
                 <h3>
-                    <?= $product->name; ?>
+                    <?= mb_strimwidth($product->name, 0, 15, '...', 'UTF-8'); ?>
                 </h3>
 
-                <span class="mf_product_card_price">
-                    Starting at <?= $currency_symbol . $product->get_price(); ?>
-                </span>
+                <div class="d-flex flex-column align-items-end">
+                    <span class="mf_product_card_price_text">
+                        Starting at 
+                    </span>
+                    <span class="mf_product_card_price">
+                        <?= $currency_symbol . $product->get_price(); ?>
+                    </span>
+                </div>
+
             </div>
         </a> 
     <?php

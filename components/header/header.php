@@ -63,7 +63,7 @@ function mf_header($component_data){
 
                         <li class="nav-item">
                             <a class="nav-link" href="<?= wc_get_page_permalink( 'myaccount' ); ?>">
-                                <span class="d-block d-md-none">Minha conta</span>
+                                <span class="d-block d-md-none">My account</span>
                                 <box-icon name='user' class="d-none d-md-block" color="var(--primary_color_dark)"></box-icon>
                             </a>
                         </li>

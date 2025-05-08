@@ -1,10 +1,10 @@
-footer h5 {
-  font-family: "Lato-Light";
-  text-transform: uppercase;
+.mf_footer h5 {
+  font-family: "Lato-Light" !important;
+  text-transform: uppercase !important;
 }
 
-footer a,
-footer p {
+.mf_footer a,
+.mf_footer p {
   color: var(--text_color);
   padding-top: 12px;
   border-top: 1px solid var(--secondary_color);
@@ -13,7 +13,7 @@ footer p {
   font-family: "Lato-Light";
 }
 
-footer .social__links ul li a {
+.mf_footer .social__links ul li a {
   border: none;
   background-color: var(--primary_color_light);
   padding: 12px;

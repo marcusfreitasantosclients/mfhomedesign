@@ -21,7 +21,7 @@ function mf_footer() {
         'tiktok' => get_option('site_tiktok'),
     ]
     ?>
-    <footer class="footer">
+    <footer class="mf_footer">
         <div class="container pt-5">
             <div class="row">
                 <div class="col-md-3">
