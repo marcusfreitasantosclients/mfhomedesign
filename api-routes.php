@@ -5,3 +5,11 @@ add_action( 'rest_api_init', function () {
       'callback' => 'send_form_data',
     ) );
 } );
+
+add_action( 'rest_api_init', function () {
+  register_rest_route( 'content/v2', '/get-content', array(
+    'methods' => 'GET',
+    'callback' => 'get_filtered_content',
+    'permission_callback' => '__return_true',
+  ) );
+} );

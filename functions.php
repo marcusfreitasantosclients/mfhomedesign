@@ -35,7 +35,7 @@ function theme_enqueue_styles_and_scripts() {
     wp_enqueue_script('splide-js', THEME_URL . '/assets/libs/splide/js/splide.min.js', ['jquery'], $version);
     wp_enqueue_script('main-js', THEME_URL . '/assets/js/main.js', ['jquery'], $version);
 }
-add_action('wp_enqueue_scripts', 'theme_enqueue_styles_and_scripts', 30);
+add_action('wp_enqueue_scripts', 'theme_enqueue_styles_and_scripts');
 
 
 function send_data_to_main_js() {
@@ -211,4 +211,60 @@ function add_woocommerce_support() {
   add_theme_support('woocommerce');
 }
 add_action('after_setup_theme', 'add_woocommerce_support');
+
+
+function get_filtered_content(WP_REST_Request $request) {
+
+  $params = [
+      'post_type'   => isset($request['post_type']) ? $request['post_type'] : 'product',
+      'name'        => isset($request['name']) ? $request['name'] : '',
+      'categories'  => isset($request['categories']) ? $request['categories'] : [],
+      'brands'      => isset($request['brands']) ? $request['brands'] : [],
+      'designers'   => isset($request['designers']) ? $request['designers'] : [],
+      'posts_per_page' => isset($request['posts_per_page']) ? $request['posts_per_page'] : 12,
+      'paged'       => isset($request['page']) ? $request['page'] : 1,
+  ];
+
+  $tax_query = [];
+
+  // Category filter
+  if (!empty($params['categories'])) {
+      $tax_query[] = [
+          'taxonomy' => 'product_cat',
+          'field'    => is_numeric($params['categories'][0]) ? 'term_id' : 'slug',
+          'terms'    => $params['categories'],
+      ];
+  }
+
+  // Brand filter (custom taxonomy)
+  if (!empty($params['brands'])) {
+      $tax_query[] = [
+          'taxonomy' => 'brand',
+          'field'    => 'slug',
+          'terms'    => $params['brands'],
+      ];
+  }
+
+  // Designers filter (custom taxonomy)
+  if (!empty($params['designers'])) {
+      $tax_query[] = [
+          'taxonomy' => 'designers',
+          'field'    => 'slug',
+          'terms'    => $params['designers'],
+      ];
+  }
+
+  $products_found = new WP_Query([
+      'post_type'      => $params['post_type'],
+      'posts_per_page' => $params['posts_per_page'],
+      'paged'          => $params['paged'],
+      's'              => $params['name'],
+      'tax_query'      => $tax_query,
+  ]);
+
+  return $products_found->posts;
+}
+
+
+
 ?>
