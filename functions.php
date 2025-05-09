@@ -22,7 +22,7 @@ global $version;
 
 function theme_enqueue_styles_and_scripts() {
     global $version;
-    $version = "1.2.0";
+    $version = "1.2.1";
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
@@ -114,6 +114,25 @@ function get_product_categories($category_ids=[]){
     });
     
     return $filtered_categories;
+}
+
+
+function get_product_brands($brand_ids=[]){
+  $brands_to_include = $brand_ids ? $brand_ids : "";
+  $product_brand_args = array(
+      'taxonomy'   => 'product_brand',
+      'orderby'    => 'menu_order',
+      'order'      => 'ASC',
+      'include'   =>  $brands_to_include,
+      'hide_empty' => true
+  );
+  $product_brands = get_terms($product_brand_args);
+  
+  $filtered_brands = array_filter($product_brands, function($brand) {
+      return $brand->parent == 0;
+  });
+  
+  return $filtered_brands;
 }
 
 
@@ -214,56 +233,70 @@ add_action('after_setup_theme', 'add_woocommerce_support');
 
 
 function get_filtered_content($request) {
-
   $params = [
-      'post_type'   => isset($request['post_type']) ? $request['post_type'] : 'product',
-      'name'        => isset($request['name']) ? $request['name'] : '',
-      'categories'  => isset($request['categories']) ? $request['categories'] : [],
-      'brands'      => isset($request['brands']) ? $request['brands'] : [],
-      'designers'   => isset($request['designers']) ? $request['designers'] : [],
-      'posts_per_page' => isset($request['posts_per_page']) ? $request['posts_per_page'] : 12,
-      'paged'       => isset($request['page']) ? $request['page'] : 1,
+    'post_type'      => isset($request['post_type']) ? $request['post_type'] : 'product',
+    'name'           => isset($request['name']) ? $request['name'] : '',
+    'categories'     => isset($request['categories']) ? explode(",", $request['categories']) : [],
+    'brands'         => isset($request['brands']) ? explode(",", $request['brands']) : [],
+    'designers'      => isset($request['designers']) ? explode(",", $request['designers']) : [],
+    'posts_per_page' => isset($request['posts_per_page']) ? $request['posts_per_page'] : 12,
+    'paged'          => isset($request['page']) ? $request['page'] : 1,
   ];
 
   $tax_query = [];
 
-  // Category filter
+  // Category filter (taxonomy: product_cat)
   if (!empty($params['categories'])) {
-      $tax_query[] = [
-          'taxonomy' => 'product_cat',
-          'field'    => is_numeric($params['categories'][0]) ? 'term_id' : 'slug',
-          'terms'    => $params['categories'],
-      ];
+    $tax_query[] = [
+      'taxonomy' => 'product_cat',
+      'field'    => is_numeric($params['categories'][0]) ? 'term_id' : 'slug',
+      'terms'    => $params['categories'],
+    ];
   }
 
-  // Brand filter (custom taxonomy)
+  // Brand filter (taxonomy: product_brand)
   if (!empty($params['brands'])) {
-      $tax_query[] = [
-          'taxonomy' => 'brand',
-          'field'    => 'slug',
-          'terms'    => $params['brands'],
-      ];
+    $tax_query[] = [
+      'taxonomy' => 'product_brand',
+      'field'    => 'slug',
+      'terms'    => $params['brands'],
+    ];
   }
 
-  // Designers filter (custom taxonomy)
+  // Meta query for ACF field: designer (assuming it's saved as a single slug or ID)
+  $meta_query = [];
+
   if (!empty($params['designers'])) {
-      $tax_query[] = [
-          'taxonomy' => 'designers',
-          'field'    => 'slug',
-          'terms'    => $params['designers'],
+    $meta_query = ['relation' => 'OR'];
+  
+    foreach ($params['designers'] as $designer_id) {
+      $meta_query[] = [
+        'key'     => 'designers',
+        'value'   => '"' . $designer_id . '"', // quotes to match serialized array elements
+        'compare' => 'LIKE',
       ];
+    }
+  }
+  
+
+  $query_args = [
+    'post_type'      => $params['post_type'],
+    'posts_per_page' => $params['posts_per_page'],
+    'paged'          => $params['paged'],
+    's'              => $params['name'],
+  ];
+
+  if (!empty($tax_query)) {
+    $query_args['tax_query'] = $tax_query;
   }
 
-  $products_found = new WP_Query([
-      'post_type'      => $params['post_type'],
-      'posts_per_page' => $params['posts_per_page'],
-      'paged'          => $params['paged'],
-      's'              => $params['name'],
-      'tax_query'      => $tax_query,
-  ]);
+  if (!empty($meta_query)) {
+    $query_args['meta_query'] = $meta_query;
+  }
 
-  return $products_found;
+  return new WP_Query($query_args);
 }
+
 
 
 function render_dynamic_content_based_on_post_type(WP_REST_Request $request) {
@@ -271,7 +304,7 @@ function render_dynamic_content_based_on_post_type(WP_REST_Request $request) {
 
   $content_components = '';
 
-  if ($content_found->have_posts()) {
+  if ($content_found->have_posts() && $request['post_type'] == "product") {
       while ($content_found->have_posts()) {
           $content_found->the_post();
 
@@ -294,7 +327,7 @@ function render_dynamic_content_based_on_post_type(WP_REST_Request $request) {
   return rest_ensure_response([
       'total'          => $content_found->found_posts,
       'page'           => $request['page'],
-      //'results'        => $content_found->posts,
+      'results'        => $content_found->posts,
       'content_cards'  => $content_components,
   ]);
 }

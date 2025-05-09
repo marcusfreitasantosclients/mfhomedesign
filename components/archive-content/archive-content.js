@@ -5,21 +5,49 @@ document.addEventListener("DOMContentLoaded", function () {
   const loadingSpinner = document.querySelector(".mf_loading_spinner");
   const contentContainer = document.querySelector(".filtered_content");
 
-  const getPosts = async () => {
-    const searchForm = document.querySelector(
+  const getSearchQuery = () => {
+    const searchInput = document.querySelector(
       ".filter_content_column .searchform input"
-    ).value;
+    );
+    const value = searchInput ? searchInput.value.trim() : "";
+    return value !== "" ? `name=${encodeURIComponent(value)}` : null;
+  };
 
+  const getCheckedValuesQuery = (selector, key) => {
+    const inputs = document.querySelectorAll(selector);
+    const selectedValues = [...inputs]
+      .filter((input) => input.checked)
+      .map((input) => input.value);
+
+    return selectedValues.length > 0
+      ? `${key}=${selectedValues.join(",")}`
+      : null;
+  };
+
+  const buildQueryString = () => {
+    const queryParts = [
+      getSearchQuery(),
+      getCheckedValuesQuery(".filter_content_categories input", "categories"),
+      getCheckedValuesQuery(".filter_content_brands input", "brands"),
+      getCheckedValuesQuery(".filter_content_designers input", "designers"),
+    ].filter(Boolean); // remove nulls
+
+    return queryParts.length ? `&${queryParts.join("&")}` : "";
+  };
+
+  const getPosts = async () => {
     contentContainer.innerHTML = "";
 
     try {
       loadingSpinner.style.display = "flex";
 
-      const response = await fetch(
-        `${current_user_data.site_url}/wp-json/content/v2/get-content/?name=${searchForm}`
-      );
+      const queryString = buildQueryString();
+      const baseUrl = `${current_user_data.site_url}/wp-json/content/v2/get-content/?post_type=product${queryString}`;
+      console.log(baseUrl);
 
+      const response = await fetch(baseUrl);
       const responseJson = await response.json();
+
       console.log(responseJson);
       contentContainer.innerHTML = responseJson.content_cards;
     } catch (e) {

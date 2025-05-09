@@ -1,4 +1,10 @@
-<?php function mf_archive_content(){ ?>
+<?php function mf_archive_content(){ 
+    $product_categories = get_product_categories();
+    $product_brands = get_product_brands(); 
+    $product_designers = get_filtered_content(["post_type" => "designer"]);
+    
+    ?>
+
     <section class="py-5">
         <div class="container">
             <div class="row">
@@ -10,8 +16,49 @@
                             "searchform" => []
                         ]) ?>
 
-                        <div class="my-5">
+                        <hr/>
+
+                        <div class="">
                             <h5>Categories</h5>
+
+                            <div class="filter_content_categories d-flex flex-column">
+                                <?php foreach($product_categories as $product_cat){ ?>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="checkbox" id="<?= $product_cat->name ?>" name="<?= $product_cat->name ?>" value="<?= $product_cat->slug ?>">
+                                        <label for="<?= $product_cat->name ?>"> <?= $product_cat->name ?></label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        <div class="">
+                            <h5>Brands</h5>
+
+                            <div class="filter_content_brands d-flex flex-column">
+                                <?php foreach($product_brands as $product_brand){ ?>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="checkbox" id="<?= $product_brand->name ?>" name="<?= $product_brand->name ?>" value="<?= $product_brand->slug ?>">
+                                        <label for="<?= $product_brand->name ?>"> <?= $product_brand->name ?></label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        <div class="mb-5">
+                            <h5>Designers</h5>
+
+                            <div class="filter_content_designers d-flex flex-column">
+                                <?php foreach($product_designers->posts as $designer){ ?>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="checkbox" id="<?= $designer->post_title ?>" name="<?= $designer->post_title ?>" value="<?= $designer->ID ?>">
+                                        <label for="<?= $designer->post_title ?>"> <?= $designer->post_title ?></label>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         </div>
 
                         <?php
