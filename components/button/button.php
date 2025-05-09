@@ -9,4 +9,4 @@ function mf_button($component_data){
 
     ?>
     <a href='<?= $button_url ?>' target='<?= $button_target ?>' class="mf_default_btn <?= "$button_color_text $button_color" ?> rounded btn btn-<?=$button_type?>"><?= $button_text ?></a>
-<? }
+<?php }

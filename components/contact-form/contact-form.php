@@ -15,7 +15,7 @@ function mf_contact_form($component_data){
 
 
                     <form class="mf_contact_form position-relative mt-5">
-                        <?php import_component('loading-spinner', []); ?>
+                        <?php import_component('loading-spinner', ['loading-spinner' => null]); ?>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">

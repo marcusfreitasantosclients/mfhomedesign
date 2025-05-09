@@ -26,19 +26,23 @@ $gallery_items = get_field('images');
     </div>
 </section>
 
-<section class="py-5">
-    <div class="container">
 
-        <div class="mf_gallery_container d-grid gap-1">
-            <?php foreach($gallery_items as $image){ ?>
-                <div class="">
-                    <a href="<?= $image['url'] ?>" data-lightbox="<?= $post_slug ?>" class="mf_gallery_img_wrapper">
-                        <img class="img-fluid" src="<?= $image['url'] ?>" alt="<?= $image['alt'] ?>" />
-                    </a>
-                </div>
-            <?php } ?>
-        </div>
-    </div>  
-</section>
+<?php if(is_array($gallery_items)){ ?>
+    <section class="py-5">
+        <div class="container">
+    
+            <div class="mf_gallery_container d-grid gap-1">
+                <?php foreach($gallery_items as $image){ ?>
+                    <div class="">
+                        <a href="<?= $image['url'] ?>" data-lightbox="<?= $post_slug ?>" class="mf_gallery_img_wrapper">
+                            <img class="img-fluid" src="<?= $image['url'] ?>" alt="<?= $image['alt'] ?>" />
+                        </a>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>  
+    </section>
+<?php } ?>
+
 
 <?php get_footer(); ?>

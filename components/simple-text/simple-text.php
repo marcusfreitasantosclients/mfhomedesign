@@ -13,7 +13,7 @@ function mf_simple_text($component_data){ ?>
             </div>
         <?php } ?>
 
-        <?php if($component_data['cta']){
+        <?php if(isset($component_data['cta'])){
             import_component('button', [
                 'button' => [
                     'text'     => $component_data['cta']['title'],

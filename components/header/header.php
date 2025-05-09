@@ -4,7 +4,7 @@ function mf_header($component_data){
     global $post;
     $theme_location = 'header';
     $menu_items = [];
-    $post_slug = $post->post_name;
+    $post_slug = isset($post) ? $post->post_name : "";
     
     if (($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
         $menu = get_term( $locations[$theme_location], 'nav_menu' );
