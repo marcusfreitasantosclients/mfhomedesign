@@ -113,7 +113,7 @@ function get_product_categories($category_ids=[]){
         return $category->parent == 0;
     });
     
-    return $filtered_categories;
+    return $product_categories;
 }
 
 

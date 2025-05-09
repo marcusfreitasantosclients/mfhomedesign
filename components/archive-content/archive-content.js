@@ -48,8 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(baseUrl);
       const responseJson = await response.json();
 
-      console.log(responseJson);
-      contentContainer.innerHTML = responseJson.content_cards;
+      if (responseJson.total > 0) {
+        contentContainer.innerHTML = responseJson.content_cards;
+      } else {
+        contentContainer.innerHTML = "<span>Nothing found.</span>";
+      }
     } catch (e) {
       console.log(e);
     } finally {
