@@ -1,8 +1,11 @@
 <?php
 function mf_dashboard_nav_menu(){ ?>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded my-2">
+    <nav class="navbar navbar-expand-lg navbar-light rounded my-5 mf_dashboard_nav_menu">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="<?php echo esc_url( wc_get_account_endpoint_url( '' ) ); ?>">My Account</a>
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="<?php echo esc_url( wc_get_account_endpoint_url( '' ) ); ?>">
+                <box-icon name='left-arrow-alt'></box-icon>
+                Dashboard
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#accountNavbar" aria-controls="accountNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
