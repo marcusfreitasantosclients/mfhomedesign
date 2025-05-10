@@ -53,11 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(baseUrl);
       const responseJson = await response.json();
 
-      totalPosts += responseJson.posts_total;
+      totalPosts = responseJson.posts_total;
 
-      if (totalPosts >= responseJson.total) {
+      if (totalPosts < 12) {
         loadMoreBtn.style.display = "none";
-        return;
       }
 
       if (totalPosts > 0) {
