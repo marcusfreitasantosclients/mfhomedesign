@@ -22,7 +22,7 @@ global $version;
 
 function theme_enqueue_styles_and_scripts() {
     global $version;
-    $version = "1.2.1";
+    $version = "1.2.2";
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
@@ -326,6 +326,7 @@ function render_dynamic_content_based_on_post_type(WP_REST_Request $request) {
 
   return rest_ensure_response([
       'total'          => $content_found->found_posts,
+      'posts_total'   => count($content_found->posts),
       'page'           => $request['page'],
       'results'        => $content_found->posts,
       'content_cards'  => $content_components,

@@ -91,6 +91,10 @@
                     <?php else : ?>
                         <?php do_action( 'woocommerce_no_products_found' ); ?>
                     <?php endif; ?>
+
+                    <?php import_component("post-pagination", [
+                        "post-pagination" => []
+                    ])?>
                 </div>        
             </div>
         </div>

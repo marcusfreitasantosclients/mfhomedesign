@@ -4,6 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const loadingSpinner = document.querySelector(".mf_loading_spinner");
   const contentContainer = document.querySelector(".filtered_content");
+  const loadMoreBtn = document.querySelector(".btn_load_more");
+  let currentPage = 1;
+  let totalPosts = 0;
+
+  const goTopFunction = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
 
   const getSearchQuery = () => {
     const searchInput = document.querySelector(
@@ -30,26 +38,35 @@ document.addEventListener("DOMContentLoaded", function () {
       getCheckedValuesQuery(".filter_content_categories input", "categories"),
       getCheckedValuesQuery(".filter_content_brands input", "brands"),
       getCheckedValuesQuery(".filter_content_designers input", "designers"),
-    ].filter(Boolean); // remove nulls
+    ].filter(Boolean);
 
     return queryParts.length ? `&${queryParts.join("&")}` : "";
   };
 
-  const getPosts = async () => {
-    contentContainer.innerHTML = "";
-
+  const getPosts = async (page = 1, append = false) => {
     try {
       loadingSpinner.style.display = "flex";
 
       const queryString = buildQueryString();
-      const baseUrl = `${current_user_data.site_url}/wp-json/content/v2/get-content/?post_type=product${queryString}`;
-      console.log(baseUrl);
+      const baseUrl = `${current_user_data.site_url}/wp-json/content/v2/get-content/?page=${page}&post_type=product${queryString}`;
 
       const response = await fetch(baseUrl);
       const responseJson = await response.json();
 
-      if (responseJson.total > 0) {
-        contentContainer.innerHTML = responseJson.content_cards;
+      totalPosts += responseJson.posts_total;
+
+      if (totalPosts >= responseJson.total) {
+        loadMoreBtn.style.display = "none";
+        return;
+      }
+
+      if (totalPosts > 0) {
+        if (append) {
+          contentContainer.innerHTML += responseJson.content_cards;
+        } else {
+          contentContainer.innerHTML = "";
+          contentContainer.innerHTML = responseJson.content_cards;
+        }
       } else {
         contentContainer.innerHTML = "<span>Nothing found.</span>";
       }
@@ -63,5 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
   submitBtn.addEventListener("click", function (e) {
     e.preventDefault();
     getPosts();
+  });
+
+  loadMoreBtn.addEventListener("click", function () {
+    currentPage++;
+    getPosts(currentPage, true);
   });
 });

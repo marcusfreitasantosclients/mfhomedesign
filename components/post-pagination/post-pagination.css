@@ -1,0 +1,18 @@
+.btn_previous_posts,
+.btn_next_posts {
+  cursor: pointer;
+}
+
+.mf_post_pagination .page-link {
+  color: var(--text-color) !important;
+}
+
+.mf_post_pagination input {
+  padding: 0;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.mf_post_pagination_input_wrapper {
+  max-width: 60px;
+}
