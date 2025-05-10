@@ -1,6 +1,6 @@
 <?php
 function mf_dashboard_nav_menu(){ ?>
-    <nav class="navbar navbar-expand-lg navbar-light rounded my-5 mf_dashboard_nav_menu">
+    <nav class="navbar navbar-expand-lg navbar-light rounded my-3 mf_dashboard_nav_menu">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="<?php echo esc_url( wc_get_account_endpoint_url( '' ) ); ?>">
                 <box-icon name='left-arrow-alt'></box-icon>
