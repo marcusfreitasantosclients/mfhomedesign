@@ -58,12 +58,6 @@
   fill: var(--primary_color);
 }
 
-.mf_single_product_cart select {
-  padding: 12px;
-  border-radius: 50px;
-  border-color: var(--primary_color_light);
-}
-
 .mf_single_product_cart .variations label {
   display: none;
 }
