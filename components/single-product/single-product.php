@@ -13,14 +13,13 @@ function mf_single_product($component_data){
     $product_featured_img = get_the_post_thumbnail($product->id, 'full');
     $attachment_ids = $product->get_gallery_image_ids();
 
-
     ?>
 
     <section class="py-5 mf_single_product_section bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <?php if($attachment_ids){ ?>
+                    <?php if(!empty($attachment_ids)){ ?>
                         <div class="splide w-100 position-relative mf_single_product_carousel">
                             <div class="splide__track">   
                                 <div class="splide__list">
@@ -38,7 +37,7 @@ function mf_single_product($component_data){
                             </div>
                         </div>
                     <?php }else{ ?>
-                        <?php echo $productImage; ?>
+                        <?php echo $product_image; ?>
                     <?php } ?>
                 </div>
 
