@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<?php wc_print_notices(); ?>
 
 <?php import_component("single-product", [
     "single-product" => [

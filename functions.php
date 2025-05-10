@@ -33,6 +33,7 @@ function theme_enqueue_styles_and_scripts() {
     wp_enqueue_script('bootstrap-js', THEME_URL . '/assets/libs/bootstrap/js/bootstrap.bundle.min.js', ['jquery'], $version);
     wp_enqueue_script('lightbox-js', THEME_URL . '/assets/libs/lightbox/js/lightbox.min.js', ['jquery'], $version);
     wp_enqueue_script('splide-js', THEME_URL . '/assets/libs/splide/js/splide.min.js', ['jquery'], $version);
+    wp_enqueue_script('wc-add-to-cart-variation');
     wp_enqueue_script('main-js', THEME_URL . '/assets/js/main.js', ['jquery'], $version);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles_and_scripts');

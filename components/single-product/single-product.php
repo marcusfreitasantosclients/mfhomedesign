@@ -1,7 +1,7 @@
 <?php
 function mf_single_product($component_data){ 
     global $product;
-    $product = new WC_product($component_data['product_id']);
+    $product = wc_get_product($component_data['product_id']);
     $product_data = $product->get_data();
     $attachment_ids = $product->get_gallery_image_ids();
     $product_image = get_the_post_thumbnail($product->id, 'full');
@@ -12,13 +12,12 @@ function mf_single_product($component_data){
     $product_brands = implode(', ', wp_list_pluck($product_brand_terms, 'name')); 
     $product_featured_img = get_the_post_thumbnail($product->id, 'full');
     $attachment_ids = $product->get_gallery_image_ids();
-
     ?>
 
     <section class="py-5 mf_single_product_section bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <?php if(!empty($attachment_ids)){ ?>
                         <div class="splide w-100 position-relative mf_single_product_carousel">
                             <div class="splide__track">   
@@ -41,7 +40,7 @@ function mf_single_product($component_data){
                     <?php } ?>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <p class="mf_single_product_cat"><strong>Categories:</strong> <?php echo $product_cats; ?></p>
 
                     <h1 class="mf_single_product_title"><?= the_title(); ?></h1>
@@ -53,17 +52,29 @@ function mf_single_product($component_data){
 
                     <hr />
 
-
                     <p class="mf_single_product_price my-3"><?php echo $product->get_price_html(); ?></p>
 
-                    <?php
-                        // Variable product dropdown
-                        if ($product->is_type('variable')) {
-                            wc_get_template('single-product/add-to-cart/variable.php');
-                        } else {
-                            wc_get_template('single-product/add-to-cart/simple.php');
-                        }
-                    ?>
+                    <div class="mf_single_product_cart">
+                        <?php
+                            // Variable product dropdown
+                            if ($product->is_type('variable')) {                        
+                                $available_variations = $product->get_available_variations();
+                                $attributes = $product->get_variation_attributes();
+                                $selected_attributes = $product->get_default_attributes();
+                                                            
+                                wc_get_template(
+                                    'single-product/add-to-cart/variable.php',
+                                    array(
+                                        'available_variations' => $available_variations,
+                                        'attributes' => $attributes,
+                                    )
+                                );
+                                wp_reset_postdata();
+                            } else {
+                                wc_get_template('single-product/add-to-cart/simple.php');
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
