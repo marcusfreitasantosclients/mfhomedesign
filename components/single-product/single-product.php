@@ -12,6 +12,15 @@ function mf_single_product($component_data){
     $product_brands = implode(', ', wp_list_pluck($product_brand_terms, 'name')); 
     $product_featured_img = get_the_post_thumbnail($product->id, 'full');
     $attachment_ids = $product->get_gallery_image_ids();
+
+    // Get 10 most recent product IDs in date descending order.
+    $other_products_query = new WC_Product_Query(array(
+        'limit' => 10,
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'return' => 'ids',
+    ));
+    $other_products = $other_products_query->get_products();
     ?>
 
     <section class="py-5 mf_single_product_section bg-light">
@@ -78,5 +87,35 @@ function mf_single_product($component_data){
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="py-5 px-2 my-5">
+
+        <div class="container">
+
+            <?php import_component("simple-text", [
+                "simple-text" => [
+                    "title" => "You may like"
+                ]
+            ]) ?>
+            <div class="splide w-100 position-relative mf_single_product_carousel other_products my-3">
+                <div class="splide__track">   
+                    <div class="splide__list">
+                        <?php foreach($other_products as $other_product){
+                            ?>
+                                <div class="splide__slide">
+                                    <?php
+                                        import_component('product-card', [
+                                            'product-card' => $other_product,
+                                        ]);
+                                    ?>  
+                                </div>
+                        <?php } ?>    
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+        
     </section>
 <?php }

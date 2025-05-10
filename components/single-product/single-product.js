@@ -1,18 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const mfBanners = [
+  const mfcarousels = [
     ...document.querySelectorAll(".mf_single_product_carousel"),
   ];
 
-  mfBanners.forEach((banner, index) => {
-    const bannerItems = [...banner.querySelectorAll(".splide__slide")];
+  mfcarousels.forEach((carousel, index) => {
+    const carouselItems = [...carousel.querySelectorAll(".splide__slide")];
 
-    new Splide(banner, {
+    const otherProductsCarousel = carousel.classList.contains("other_products");
+
+    new Splide(carousel, {
       type: "loop",
-      perPage: 1,
-      autoplay: bannerItems.length > 1,
+      perPage: otherProductsCarousel ? 4 : 1,
+      autoplay: carouselItems.length > 1,
       interval: 5000,
-      pagination: bannerItems.length > 1,
-      arrows: bannerItems.length > 1,
+      pagination: false,
+      arrows: carouselItems.length > 1,
+      gap: 12,
     }).mount();
   });
 });

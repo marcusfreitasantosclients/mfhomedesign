@@ -1,13 +1,13 @@
 <?php
 function mf_simple_text($component_data){ ?>
     <div class="w-100 mf_simple_text">
-        <?php if($component_data['title']){ ?>
+        <?php if(isset($component_data['title'])){ ?>
             <h2>
                 <?= $component_data['title'] ?>
             </h2>
         <?php } ?>
 
-        <?php if($component_data['text']){ ?>
+        <?php if(isset($component_data['text'])){ ?>
             <div class="w-100">
                 <?= $component_data['text'] ?>
             </div>
