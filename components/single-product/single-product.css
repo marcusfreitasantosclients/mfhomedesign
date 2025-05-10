@@ -1,0 +1,44 @@
+.mf_single_product_title {
+  font-family: "Lato-Bold";
+  font-size: var(--font-size-2xl);
+  color: var(--primary_color);
+}
+
+.mf_single_product_content {
+  color: var(--text_color);
+}
+
+.mf_single_product_price {
+  font-family: "Lato-Bold";
+  font-size: var(--font-size-xl);
+  color: var(--primary_color);
+}
+
+.screen-reader-text {
+  clip-path: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  width: fit-content !important;
+}
+
+.quantity {
+  margin: 12px 0;
+}
+
+.quantity input {
+  border: 1px solid var(--text_color) !important;
+  margin-left: 12px;
+}
+
+.single_add_to_cart_button {
+  border-radius: 50px !important;
+  padding: 8px var(--font-size-xl);
+  background: var(--primary_color);
+  background-color: var(--primary_color) !important;
+  border-color: var(--primary_color);
+  transition: 0.5s;
+}
+
+.single_add_to_cart_button:hover {
+  opacity: 0.5;
+}

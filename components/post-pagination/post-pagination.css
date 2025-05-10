@@ -4,7 +4,7 @@
 }
 
 .mf_post_pagination .page-link {
-  color: var(--text-color) !important;
+  color: var(--text_color) !important;
 }
 
 .mf_post_pagination input {
