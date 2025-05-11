@@ -68,8 +68,14 @@ function mf_header($component_data){
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item position-relative">
                             <a class="nav-link" href="<?= wc_get_page_permalink('cart') ?>"><box-icon name='cart' color="var(--primary_color_dark)" ></box-icon></a>
+                            
+                            <?php if(WC()->cart->get_cart_contents_count() > 0){ ?>
+                                <span class="cart_count badge rounded-pill bg-danger">
+                                    <?= WC()->cart->get_cart_contents_count() ?>
+                                </span>
+                            <?php } ?>
                         </li>
 
                         <?php if(!wp_is_mobile()){ ?>

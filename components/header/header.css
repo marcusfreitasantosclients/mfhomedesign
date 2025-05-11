@@ -18,6 +18,12 @@ header li.active a {
   color: var(--secondary_color) !important;
 }
 
+.cart_count {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 @media (min-width: 992px) {
   .navbar .dropdown-menu {
     margin-top: 0;

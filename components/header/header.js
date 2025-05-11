@@ -20,3 +20,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+window.addEventListener("load", () => {
+  const inputs = document.querySelectorAll(
+    ".wc-block-components-quantity-selector__input"
+  );
+
+  const quantityBtn = [
+    ...document.querySelectorAll(
+      ".wc-block-components-quantity-selector__button"
+    ),
+  ];
+
+  const removeItemBtn = [
+    ...document.querySelectorAll(".wc-block-cart-item__remove-link"),
+  ];
+
+  const cartIcon = document.querySelector(".cart_count");
+
+  const countCartItems = () => {
+    setTimeout(() => {
+      let cartCount = 0;
+
+      const updatedInputs = document.querySelectorAll(
+        ".wc-block-components-quantity-selector__input"
+      );
+
+      updatedInputs.forEach((input) => {
+        cartCount += Number(input.value);
+      });
+
+      cartIcon.innerText = cartCount;
+    }, 1000);
+  };
+
+  quantityBtn.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      countCartItems();
+    });
+  });
+
+  removeItemBtn.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      countCartItems();
+    });
+  });
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      countCartItems();
+    });
+  });
+});
