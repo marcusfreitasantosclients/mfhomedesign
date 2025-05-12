@@ -9,7 +9,7 @@
 
 .mf_post_pagination input {
   padding: 0;
-  border-radius: 6px;
+  border-radius: var(--default-input-border-radius);
   text-align: center;
 }
 

@@ -1,5 +1,5 @@
 .mf_horizontal_card_img_wrapper {
-  border-radius: 24px;
+  border-radius: var(--default-input-border-radius);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .mf_horizontal_card_content_wrapper {
-  border-radius: 24px;
+  border-radius: var(--default-input-border-radius);
   padding: 40px;
   background-color: var(--primary_color_light);
 }

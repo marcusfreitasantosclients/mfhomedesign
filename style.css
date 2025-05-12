@@ -51,6 +51,8 @@ Version: 1.0
   --font-size-xl: 1.5rem; /* 24px */
   --font-size-2xl: 2rem; /* 32px */
   --font-size-3xl: 3rem; /* 48px */
+
+  --default-input-border-radius: 12px;
 }
 
 body {
@@ -72,7 +74,7 @@ a:hover {
 
 .input-group,
 .wc-block-components-text-input input {
-  border-radius: 50px !important;
+  border-radius: 12px !important;
   padding: 6px 12px;
   background-color: var(--primary_color_light) !important;
 }
@@ -88,7 +90,7 @@ input {
   border: none !important;
   background: none !important;
   background-color: transparent !important;
-  border-radius: 50px;
+  border-radius: 12px;
   margin-right: 6px;
 }
 
@@ -97,7 +99,7 @@ textarea:focus-visible {
   outline: 1px solid var(--secondary_color) !important;
   background: none !important;
   background-color: transparent !important;
-  border-radius: 50px;
+  border-radius: 12px;
 }
 
 select {
