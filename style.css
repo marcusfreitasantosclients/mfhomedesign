@@ -70,8 +70,9 @@ a:hover {
   opacity: 0.5;
 }
 
-.input-group {
-  border-radius: 50px;
+.input-group,
+.wc-block-components-text-input input {
+  border-radius: 50px !important;
   padding: 6px 12px;
   background-color: var(--primary_color_light) !important;
 }
