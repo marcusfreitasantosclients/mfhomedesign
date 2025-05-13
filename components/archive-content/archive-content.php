@@ -2,7 +2,7 @@
     $product_categories = get_product_categories();
     $product_brands = get_product_brands(); 
     $product_designers = get_filtered_content(["post_type" => "designer"]);
-    
+    $queried_object = get_queried_object();
     ?>
 
     <section class="py-5">
@@ -24,7 +24,7 @@
                             <div class="filter_content_categories d-flex flex-column">
                                 <?php foreach($product_categories as $product_cat){ ?>
                                     <div class="d-flex align-items-center gap-2">
-                                        <input type="checkbox" id="<?= $product_cat->name ?>" name="<?= $product_cat->name ?>" value="<?= $product_cat->slug ?>">
+                                        <input type="checkbox" id="<?= $product_cat->name ?>" name="<?= $product_cat->name ?>" value="<?= $product_cat->slug ?>" <?= $queried_object->name == $product_cat->name ? 'checked' : '' ?>>
                                         <label for="<?= $product_cat->name ?>"> <?= $product_cat->name ?></label>
                                     </div>
                                 <?php } ?>
