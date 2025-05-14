@@ -5,6 +5,7 @@
   height: 600px;
   background-size: cover !important;
   background-repeat: no-repeat !important;
+  background-position: center center !important;
   padding: 24px;
   border-radius: 24px;
   overflow: hidden;
