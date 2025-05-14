@@ -9,6 +9,28 @@
         $designer = get_post($_GET['designer_id']);
         $queried_object_name = trim($designer->post_title);
     }
+
+    function render_category_checkboxes($categories, $parent = 0, $depth = 0, $queried_object_name = '') {
+        foreach ($categories as $category) {
+            if ($category->parent == $parent) {
+                $indent = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $depth); // 4 non-breaking spaces per level
+                ?>
+                <div class="d-flex align-items-center gap-2">
+                    <input type="checkbox"
+                        id="<?= esc_attr($category->slug) ?>"
+                        name="category[]"
+                        value="<?= esc_attr($category->slug) ?>"
+                        <?= $queried_object_name == $category->name ? 'checked' : '' ?>>
+                    <label for="<?= esc_attr($category->slug) ?>">
+                        <?= $indent . esc_html($category->name) ?>
+                    </label>
+                </div>
+                <?php
+                // Recursive call for children
+                render_category_checkboxes($categories, $category->term_id, $depth + 1, $queried_object_name);
+            }
+        }
+    }
     ?>
 
     <section class="py-5">
@@ -39,12 +61,7 @@
                             <h5>Categories</h5>
 
                             <div class="filter_content_categories d-flex flex-column">
-                                <?php foreach($product_categories as $product_cat){ ?>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <input type="checkbox" id="<?= $product_cat->name ?>" name="<?= $product_cat->name ?>" value="<?= $product_cat->slug ?>" <?= $queried_object_name == $product_cat->name ? 'checked' : '' ?>>
-                                        <label for="<?= $product_cat->name ?>"> <?= $product_cat->name ?></label>
-                                    </div>
-                                <?php } ?>
+                                <?php render_category_checkboxes($product_categories, 0, 0, $queried_object_name); ?>
                             </div>
                         </div>
 

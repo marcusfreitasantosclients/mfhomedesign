@@ -106,7 +106,7 @@ function get_product_categories($category_ids=[]){
         'orderby'    => 'menu_order',
         'order'      => 'ASC',
         'include'   =>  $categories_to_include,
-        'hide_empty' => true
+        'hide_empty' => false
     );
     $product_categories = get_terms($product_cat_args);
     
