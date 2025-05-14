@@ -182,6 +182,10 @@ select {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.mf_gallery_container_img_wrapper {
+  height: 400px;
+}
+
 .mf_gallery_img_wrapper {
   height: 300px;
   width: 100%;
@@ -189,6 +193,7 @@ select {
 
 .mf_gallery_img_wrapper img {
   height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -211,5 +216,9 @@ select {
 @media (max-width: 60rem) {
   .mf_gallery_container {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .mf_gallery_container_img_wrapper {
+    height: 200px;
   }
 }
