@@ -15,13 +15,13 @@
             if ($category->parent == $parent) {
                 $indent = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $depth); // 4 non-breaking spaces per level
                 ?>
-                <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center justify-content-start gap-2">
                     <input type="checkbox"
                         id="<?= esc_attr($category->slug) ?>"
-                        name="category[]"
+                        name="<?= esc_attr($category->slug) ?>"
                         value="<?= esc_attr($category->slug) ?>"
                         <?= $queried_object_name == $category->name ? 'checked' : '' ?>>
-                    <label for="<?= esc_attr($category->slug) ?>">
+                    <label for="<?= esc_attr($category->slug) ?>" class="<?=  !$category->parent ? 'parent'  : ''; ?>">
                         <?= $indent . esc_html($category->name) ?>
                     </label>
                 </div>

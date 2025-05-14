@@ -8,3 +8,14 @@
   border-radius: var(--default-input-border-radius);
   text-decoration: none;
 }
+
+.filter_content_column label {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.filter_content_column label.parent {
+  font-family: "Lato-Regular";
+}
