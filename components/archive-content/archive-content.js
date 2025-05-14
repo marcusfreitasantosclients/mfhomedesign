@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const currentDesigner =
+    document.querySelector(".filter_content_column").dataset.currentDesigner ??
+    null;
+  console.log(currentDesigner);
   const submitBtn = document.querySelector(
     ".filter_content_column .mf_default_btn"
   );
@@ -36,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const queryParts = [
       getSearchQuery(),
       getCheckedValuesQuery(".filter_content_categories input", "categories"),
-      getCheckedValuesQuery(".filter_content_brands input", "brands"),
       getCheckedValuesQuery(".filter_content_designers input", "designers"),
     ].filter(Boolean);
 
@@ -85,4 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
     currentPage++;
     getPosts(currentPage, true);
   });
+
+  if (currentDesigner) getPosts();
 });
