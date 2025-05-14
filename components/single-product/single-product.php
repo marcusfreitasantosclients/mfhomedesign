@@ -59,6 +59,18 @@ function mf_single_product($component_data){
                         <?= the_content() ?>
                     </div>
 
+                    <?php 
+                        import_component('button', [
+                            'button' => [
+                                'text'     => "Finish Samples",
+                                'url'      => esc_url(home_url('/finishes')),
+                                'target'   => '_self',
+                                'type'     => 'secondary',
+                                'color'    => 'light'
+                            ]
+                        ]);
+                    ?>
+                    
                     <hr />
 
                     <p class="mf_single_product_price my-3"><?php echo $product->get_price_html(); ?></p>
