@@ -100,11 +100,14 @@ function query_cpt_based_on_type($type){
 
 
 function get_product_categories($category_ids=[]){
+    $category = get_term_by( 'slug', 'uncategorized', 'product_cat' );
+    $uncategorized_id = $category->term_id;
     $categories_to_include = $category_ids ? $category_ids : "";
     $product_cat_args = array(
         'taxonomy'   => 'product_cat',
         'orderby'    => 'menu_order',
         'order'      => 'ASC',
+        'exclude'     => [$uncategorized_id],
         'include'   =>  $categories_to_include,
         'hide_empty' => false
     );
