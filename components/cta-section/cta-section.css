@@ -10,6 +10,7 @@
   width: 120%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  object-position: center;
 }
 
 .mf_cta_section_img_wrapper img:hover {
