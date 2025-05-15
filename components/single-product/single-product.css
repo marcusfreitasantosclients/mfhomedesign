@@ -19,6 +19,7 @@
   overflow: visible !important;
   position: relative !important;
   width: fit-content !important;
+  top: 0 !important;
 }
 
 .quantity {
