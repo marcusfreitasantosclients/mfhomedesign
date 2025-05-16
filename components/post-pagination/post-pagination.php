@@ -5,7 +5,7 @@ function mf_post_pagination($component_data){ ?>
             <li class="page-item btn_load_more">
                 <div class="page-link d-flex justify-content-center align-items-center" style="cursor: pointer">
                     <span>Load more</span>
-                    <box-icon name="plus" color="var(--text_color)"></box-icon>
+                    <i class="bx  bx-plus"></i> 
                 </div>
             </li>
         </ul>

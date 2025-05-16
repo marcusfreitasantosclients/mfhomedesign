@@ -12,11 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentPage = 1;
   let totalPosts = 0;
 
-  const goTopFunction = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  };
-
   const getSearchQuery = () => {
     const searchInput = document.querySelector(
       ".filter_content_column .searchform input"
@@ -48,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const getPosts = async (page = 1, append = false) => {
     try {
+      loadMoreBtn.style.display = "flex";
       loadingSpinner.style.display = "flex";
 
       const queryString = buildQueryString();

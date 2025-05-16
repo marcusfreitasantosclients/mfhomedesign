@@ -58,21 +58,21 @@ function mf_footer() {
 
                     <?php if(get_option('site_phone')){ ?>
                         <a href="tel:<?= get_option('site_phone') ?>" class="d-flex align-items-center text-decoration-none mb-2" target="_blank">
-                            <box-icon size="sm" name="phone" color="var(--primary_color_dark)"></box-icon>    
+                            <i class="bxr bx-phone"></i> 
                             <span><?= get_option('site_phone') ?></span>
                         </a>
                     <?php } ?>
 
                     <?php if(get_option('site_email')){ ?>
                         <a href="mailto:<?= get_option('site_email') ?>" class="d-flex align-items-center text-decoration-none mb-2" target="_blank">
-                            <box-icon size="sm" name="envelope" color="var(--primary_color_dark)"></box-icon>    
+                            <i class="bxr bx-envelope"></i> 
                             <span><?= get_option('site_email') ?></span>
                         </a>
                     <?php } ?>
 
                     <?php if(get_option('site_address')){ ?>
                         <a href="https://www.google.com/maps/place/<?= urlencode(get_option('site_address')) ?>" target="_blank" class="d-flex align-items-center text-decoration-none mb-2">
-                            <box-icon size="sm" name="map" color="var(--primary_color_dark)"></box-icon>    
+                            <i class="bxr bx-map"></i> 
                             <span><?= get_option('site_address') ?></span>
                         </a>
                     <?php } ?>
@@ -82,7 +82,7 @@ function mf_footer() {
                             <?php if(isset($link) && $link !== "") { ?>
                                 <li>
                                     <a href="<?= $link ?>" target="_blank">
-                                        <box-icon type='logo' name="<?= $key ?>" color="var(--primary_color_dark)"></box-icon>
+                                        <i class="bxl  bx-<?= $key ?>"  ></i> 
                                     </a>
                                 </li>
                             <?php } ?>

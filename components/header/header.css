@@ -24,6 +24,11 @@ header li.active a {
   right: 0;
 }
 
+header i {
+  font-size: var(--font-size-xl);
+  color: var(--primary_color_dark);
+}
+
 @media (min-width: 992px) {
   .navbar .dropdown-menu {
     margin-top: 0;

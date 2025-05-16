@@ -6,7 +6,8 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<?= get_option('site_favicon'); ?>">
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='<?= THEME_URL ?>/assets/libs/boxicons/basic/boxicons.css' rel='stylesheet'>
+    <link href='<?= THEME_URL ?>/assets/libs/boxicons/brands/boxicons-brands.css' rel='stylesheet'>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

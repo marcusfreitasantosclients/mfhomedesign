@@ -16,3 +16,9 @@
 .mf_post_pagination_input_wrapper {
   max-width: 60px;
 }
+
+.btn_load_more i {
+  font-size: var(--font-size-md);
+  color: var(--text_color);
+  padding-left: 6px;
+}

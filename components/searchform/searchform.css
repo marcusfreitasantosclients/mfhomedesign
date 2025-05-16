@@ -1,1 +1,6 @@
-
+.searchform input:focus-visible {
+  outline: 0 !important;
+  background: none !important;
+  background-color: transparent !important;
+  border-radius: 12px;
+}

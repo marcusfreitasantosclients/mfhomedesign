@@ -62,15 +62,17 @@ function mf_header($component_data){
                         ?>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= wc_get_page_permalink( 'myaccount' ); ?>">
+                            <a class="nav-link d-flex align-items-center justify-content-center" href="<?= wc_get_page_permalink( 'myaccount' ); ?>">
                                 <span class="d-block d-md-none">My account</span>
-                                <box-icon name='user' class="d-none d-md-block" color="var(--primary_color_dark)"></box-icon>
+                                <i class="bx bx-user d-none d-md-block" ></i>
                             </a>
                         </li>
 
                         <li class="nav-item position-relative">
-                            <a class="nav-link" href="<?= wc_get_page_permalink('cart') ?>"><box-icon name='cart' color="var(--primary_color_dark)" ></box-icon></a>
-                            
+                            <a class="nav-link d-flex align-items-center justify-content-center" href="<?= wc_get_page_permalink('cart') ?>">
+                                <i class="bx bx-cart" ></i>
+                            </a>
+
                             <?php if(WC()->cart->get_cart_contents_count() > 0){ ?>
                                 <span class="cart_count badge rounded-pill bg-danger">
                                     <?= WC()->cart->get_cart_contents_count() ?>
