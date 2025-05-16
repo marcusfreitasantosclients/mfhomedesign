@@ -344,5 +344,74 @@ function custom_loop_shop_per_page($cols) {
 }
 
 
+//*****ADD A CUSTOM FIELD TO UPLOAD IMAGES FOR THE PRODUCT ATTRIBUTE (FINISHES)
+function add_custom_fields_to_all_product_attributes() {
+    $attribute_taxonomies = wc_get_attribute_taxonomies();
+
+    foreach ( $attribute_taxonomies as $attribute ) {
+        $taxonomy = 'pa_' . $attribute->attribute_name;
+
+        // Add field to add form
+        add_action( "{$taxonomy}_add_form_fields", "add_attribute_custom_field" );
+        // Add field to edit form
+        add_action( "{$taxonomy}_edit_form_fields", "edit_attribute_custom_field" );
+
+        // Save the field
+        add_action( "created_{$taxonomy}", "save_attribute_custom_field" );
+        add_action( "edited_{$taxonomy}", "save_attribute_custom_field" );
+    }
+}
+add_action( 'init', 'add_custom_fields_to_all_product_attributes' );
+
+
+function add_attribute_custom_field() {
+    ?>
+    <div class="image-upload-wrapper">
+        <input type="hidden" name="attribute_image" id="attribute_image" value="">
+        <img id="image_preview" src="" style="max-width: 100px; display: none; margin-top: 10px;" />
+        <br>
+        <button type="button" class="button" id="upload_image">Upload Image</button>
+    </div>
+    <?php
+}
+
+
+function edit_attribute_custom_field( $term ) {
+  $image_id = get_term_meta( $term->term_id, 'finish_attribute_image', true );
+  $image_url = $image_id ? wp_get_attachment_url( $image_id ) : '';
+  echo "image id: $image_id";
+
+    ?>
+    <tr class="form-field image-upload-wrapper">
+        <th scope="row"><label for="finish_attribute_image">Attribute Image</label></th>
+        <td>
+            <input type="hidden" id="finish_attribute_image" name="finish_attribute_image" class="image-id" value="<?php echo esc_attr( $image_id ); ?>" />
+            <img id="image_preview" src="<?php echo esc_url( $image_url ); ?>" class="preview" style="max-width:300px; border-radius: 24px; <?php echo $image_url ? '' : 'display:none;'; ?> margin-top:10px;" />
+            <br/>
+            <button type="button" class="button upload-button" id="upload_image">Upload Image</button>
+            <p class="description">Upload or change the image for this attribute.</p>
+        </td>
+    </tr>
+    <?php
+}
+
+
+function save_attribute_custom_field( $term_id ) {
+    if ( isset( $_POST['finish_attribute_image'] ) ) {
+        update_term_meta(
+            $term_id,
+            'finish_attribute_image',
+            absint( $_POST['finish_attribute_image'] )
+        );
+    }
+}
+
+
+add_action('admin_enqueue_scripts', function() {
+    wp_enqueue_media();
+    wp_enqueue_script('custom-img-uploader', get_template_directory_uri() . '/assets/js/custom-img-uploader.js', ['jquery'], null, true);
+});
+//*****END
+
 
 ?>
