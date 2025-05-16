@@ -22,7 +22,7 @@ global $version;
 
 function theme_enqueue_styles_and_scripts() {
     global $version;
-    $version = "1.3.4";
+    $version = "1.3.5";
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
