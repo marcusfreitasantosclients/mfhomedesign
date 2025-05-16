@@ -13,17 +13,13 @@
   object-position: center;
 }
 
-.mf_cta_section_img_wrapper img:hover {
-  transform: translateX(-10px);
+.mf_cta_section .row {
+  padding: 0;
+  margin: 0;
 }
 
 @media (max-width: 60rem) {
   .mf_cta_section_img_wrapper {
     height: 350px;
-  }
-
-  .mf_cta_section_col {
-    padding: 0 !important;
-    margin: 0 !important;
   }
 }
