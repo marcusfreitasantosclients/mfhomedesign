@@ -63,7 +63,7 @@ function mf_single_product($component_data){
                         import_component('button', [
                             'button' => [
                                 'text'     => "Finish Samples",
-                                'url'      => esc_url(home_url('/finishes')),
+                                'url'      => esc_url(home_url('/finishes?product_id=' . $product->id)),
                                 'target'   => '_self',
                                 'type'     => 'secondary',
                                 'color'    => 'light'

@@ -8,11 +8,11 @@ function mf_text_with_image_cards($component_data){ ?>
                         <h2 class="mf_text_with_image_cards_title"><?= $component_data['title'] ?></h2>
                     <?php } ?>
 
-                    <?php if(isset($component_data['title'])){ ?>
+                    <?php if(isset($component_data['subtitle'])){ ?>
                         <h3 class="mf_text_with_image_cards_subtitle"><?= $component_data['subtitle'] ?></h3>
                     <?php } ?>
                 
-                    <?php if(isset($component_data['title'])){ ?>
+                    <?php if(isset($component_data['text'])){ ?>
                         <div class="mf_text_with_image_cards_text">
                             <?= $component_data['text'] ?>
                         </div>
@@ -22,7 +22,7 @@ function mf_text_with_image_cards($component_data){ ?>
                 <?php if(isset($component_data['image_cards']) && is_array($component_data['image_cards'])){ ?>
                     <?php foreach($component_data['image_cards'] as $image_card){ ?>
                         
-                        <div class="col-md-2 mf_text_with_image_cards_image_wrapper d-flex flex-column align-items-center gap-2">
+                        <div class="col-md-2 mf_text_with_image_cards_image_wrapper d-flex flex-column align-items-center gap-2 text-center">
                             <img src="<?= $image_card['image']['url'] ?>" alt="<?= $image_card['title'] ?>" />
                             <h4 class="mf_text_with_image_cards_button_text"><?= $image_card['title'] ?></h4>
 
