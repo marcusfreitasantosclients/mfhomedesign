@@ -74,14 +74,14 @@ a:hover {
 
 .input-group,
 .wc-block-components-text-input input {
-  border-radius: 12px !important;
+  border-radius: var(--default-input-border-radius) !important;
   padding: 6px 12px;
   background-color: var(--primary_color_light) !important;
 }
 
 .form-control,
 .woocommerce-Input {
-  border-radius: 12px;
+  border-radius: var(--default-input-border-radius);
   padding: 12px;
   background-color: var(--primary_color_light) !important;
 }
@@ -90,7 +90,7 @@ input {
   border: none !important;
   background: none !important;
   background-color: transparent !important;
-  border-radius: 12px;
+  border-radius: var(--default-input-border-radius);
   margin-right: 6px;
 }
 
@@ -99,7 +99,7 @@ textarea:focus-visible {
   outline: 1px solid var(--secondary_color) !important;
   background: none !important;
   background-color: transparent !important;
-  border-radius: 12px;
+  border-radius: var(--default-input-border-radius);
 }
 
 select {
@@ -111,7 +111,7 @@ select {
 /* WOO */
 .woocommerce form.login {
   border: 1px solid var(--light_gray_color);
-  border-radius: 12px;
+  border-radius: var(--default-input-border-radius);
 }
 
 .woocommerce form.login a,
@@ -142,7 +142,7 @@ select {
 }
 
 .wp-block-woocommerce-cart-line-items-block img {
-  border-radius: 12px;
+  border-radius: var(--default-input-border-radius);
 }
 
 .wp-block-woocommerce-cart-line-items-block a {
