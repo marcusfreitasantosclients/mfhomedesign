@@ -2,7 +2,7 @@
 function mf_text_with_image_cards($component_data){ ?>
     <section class="py-3">
         <div class="container">
-            <div class="row justify-content-start">
+            <div class="row justify-content-start g-3">
                 <div class="col-md-12">
                     <?php if(isset($component_data['title'])){ ?>
                         <h2 class="mf_text_with_image_cards_title"><?= $component_data['title'] ?></h2>
