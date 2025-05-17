@@ -30,14 +30,12 @@ if ( $product && $product->is_type( 'variable' ) ) {
             foreach ( $terms as $term ) {
                 $image_id = get_term_meta( $term->term_id, 'finish_attribute_image', true );
                 
-                if ( $image_id ) {
-                    $image_cards[] = [
-                        "image" => [
-                            "url" => wp_get_attachment_url( $image_id ),
-                        ],
-                        "title" => $term->name
-                    ];
-                }
+                $image_cards[] = [
+                    "image" => [
+                        "url" => $image_id ? wp_get_attachment_url( $image_id ) : wc_placeholder_img_src(),
+                    ],
+                    "title" => $term->name
+                ];
             }
 
         } else {
