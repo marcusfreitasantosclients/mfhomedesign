@@ -70,7 +70,6 @@
   background-color: var(--primary_color_light);
   border-radius: 50px;
   margin-left: 12px;
-  visibility: hidden !important;
 }
 
 .reset_variations_alert {
