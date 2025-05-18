@@ -60,6 +60,7 @@ function mf_single_product($component_data){
                     </div>
 
                     <?php 
+                    if ($product->is_type('variable')){
                         import_component('button', [
                             'button' => [
                                 'text'     => "Finish Samples",
@@ -69,6 +70,7 @@ function mf_single_product($component_data){
                                 'color'    => 'light'
                             ]
                         ]);
+                    }
                     ?>
                     
                     <hr />
