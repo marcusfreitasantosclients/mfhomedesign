@@ -10,9 +10,9 @@ function mf_product_card($component_data){
     // Get the price - special handling for variable products
     if ($product->is_type('variable')) {
         $min_price = $product->get_variation_price('min', true); // true = including tax
-        $price_display = $currency_symbol . $min_price;
+        $price_display = $currency_symbol . str_replace(".00", "", $min_price);
     } else {
-        $price_display = $currency_symbol . $product->get_price();
+        $price_display = $currency_symbol . str_replace(".00", "", $product->get_price());
     }
     ?>
         <a class="mf_product_card" href="<?= "$site_url/produto/" . $product->get_slug(); ?>">

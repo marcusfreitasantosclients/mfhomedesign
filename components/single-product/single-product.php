@@ -75,7 +75,7 @@ function mf_single_product($component_data){
                     
                     <hr />
 
-                    <p class="mf_single_product_price my-3"><?php echo $product->get_price_html(); ?></p>
+                    <p class="mf_single_product_price my-3"><?php echo str_replace(",00", "",$product->get_price_html()); ?></p>
 
                     <div class="mf_single_product_cart">
                         <?php
