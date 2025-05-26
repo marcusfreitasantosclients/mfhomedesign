@@ -413,5 +413,19 @@ add_action('admin_enqueue_scripts', function() {
 });
 //*****END
 
+function allow_svg_uploads($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_uploads');
+
+
+add_filter('wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+    if (pathinfo($filename, PATHINFO_EXTENSION) === 'svg') {
+        $data['ext'] = 'svg';
+        $data['type'] = 'image/svg+xml';
+    }
+    return $data;
+}, 10, 4);
 
 ?>
