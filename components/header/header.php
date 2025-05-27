@@ -62,14 +62,14 @@ function mf_header($component_data){
                         ?>
 
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center justify-content-center" href="<?= wc_get_page_permalink( 'myaccount' ); ?>">
+                            <a class="nav-link d-flex justify-content-start justify-content-md-center align-items-center" href="<?= wc_get_page_permalink( 'myaccount' ); ?>">
                                 <span class="d-block d-md-none">My account</span>
                                 <i class="bx bx-user d-none d-md-block" ></i>
                             </a>
                         </li>
 
                         <li class="nav-item position-relative">
-                            <a class="nav-link d-flex align-items-center justify-content-center" href="<?= wc_get_page_permalink('cart') ?>">
+                            <a class="nav-link d-flex justify-content-start justify-content-md-center align-items-center" href="<?= wc_get_page_permalink('cart') ?>">
                                 <i class="bx bx-cart" ></i>
                             </a>
 
@@ -80,11 +80,22 @@ function mf_header($component_data){
                             <?php } ?>
                         </li>
 
+
                         <?php if(!wp_is_mobile()){ ?>
                             <li class="nav-item">
                                 <?php import_component('searchform', ['searchform' => []]); ?>
                             </li>
                         <?php } ?>
+                        
+                        <li class="header_language_btn_wrapper">
+                            <a class="nav-link p-0">
+                                <img src="<?= THEME_URL ?>/assets/img/mexico.png" alt="mexico flag icon" />
+                            </a>
+
+                            <a class="nav-link p-0">
+                                <img src="<?= THEME_URL ?>/assets/img/canada.png" alt="canada flag icon" />
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
