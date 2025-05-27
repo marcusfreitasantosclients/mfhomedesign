@@ -22,7 +22,7 @@ global $version;
 
 function theme_enqueue_styles_and_scripts() {
     global $version;
-    $version = "1.4.2";
+    $version = "1.4.3";
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
@@ -314,7 +314,7 @@ function render_dynamic_content_based_on_post_type(WP_REST_Request $request) {
 
           ob_start(); // Start output buffering
           ?>
-          <div class="col-md-3">
+          <div class="col-md-4">
               <?php
                   import_component('product-card', [
                       'product-card' => get_the_ID(),
