@@ -98,7 +98,7 @@
                     <?php if ( woocommerce_product_loop() ) : ?>
                         <div class="row g-2 filtered_content">
                         <?php while ( have_posts() ) : the_post(); ?>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <?php
                                     import_component('product-card', [
                                         'product-card' => get_the_ID(),

@@ -38,10 +38,15 @@
     
                     } else {
                         $options = $attribute->get_options();
-                        foreach ( $options as $option ) {
-                            echo esc_html( $option ) . 'nope<br>';
-                        }
-                    }
+                        ?>
+                        <div class="container">
+                            <?php
+                            foreach ( $options as $option ) {
+                                echo esc_html( $option ) . 'nope<br>';
+                            }
+                            ?>
+                        </div>
+                    <?php }
     
                     import_component("text-with-image-cards", [
                         "text-with-image-cards" => [
