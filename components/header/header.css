@@ -36,6 +36,10 @@ header i {
   gap: 12px;
 }
 
+.header_language_btn {
+  cursor: pointer;
+}
+
 .header_language_btn_wrapper img {
   width: 24px;
   height: 24px;

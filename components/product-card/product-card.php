@@ -15,7 +15,7 @@ function mf_product_card($component_data){
         $price_display = $currency_symbol . str_replace(".00", "", $product->get_price());
     }
     ?>
-        <a class="mf_product_card" href="<?= "$site_url/produto/" . $product->get_slug(); ?>">
+        <a class="mf_product_card" href="<?= $product->get_permalink(); ?>">
             <div class="mf_product_card_cat d-flex gap-2 justify-content-center align-items-center py-3 text-center">
                 <?= $product_cats ?>
             </div>

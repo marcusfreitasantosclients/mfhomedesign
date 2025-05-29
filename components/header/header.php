@@ -88,11 +88,11 @@ function mf_header($component_data){
                         <?php } ?>
                         
                         <li class="header_language_btn_wrapper">
-                            <a class="nav-link p-0">
+                            <a class="nav-link p-0 header_language_btn" data-target-language="es">
                                 <img src="<?= THEME_URL ?>/assets/img/mexico.png" alt="mexico flag icon" />
                             </a>
 
-                            <a class="nav-link p-0">
+                            <a class="nav-link p-0 header_language_btn" data-target-language="en">
                                 <img src="<?= THEME_URL ?>/assets/img/canada.png" alt="canada flag icon" />
                             </a>
                         </li>
