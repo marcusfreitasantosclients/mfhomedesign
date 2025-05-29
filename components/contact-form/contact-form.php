@@ -52,7 +52,7 @@ function mf_contact_form($component_data){
                                 $count++;
                                 ?>
                                 <div class="mb-4 <?= $count == 1 ? 'col-12' : 'col-md-6' ?>">
-                                    <div class="mf_contact_form_image_wrapper" style="<?= $is_gallery ? 'height: 300px' : '' ?>">
+                                    <div class="mf_contact_form_image_wrapper" style="<?= $is_gallery ? 'height: 400px' : '' ?>">
                                         <img class="img-fluid" src="<?= $image['url'] ?>" alt="<?= $image['alt'] ?>" />                          
                                     </div>
                                 </div>
