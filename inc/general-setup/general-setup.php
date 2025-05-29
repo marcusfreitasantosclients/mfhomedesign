@@ -105,6 +105,20 @@ function render_general_theme_settings_page() {
                         </td>
                     </tr>
                     <tr valign="top">
+                        <th scope="row">Whatsapp Message</th>
+                        <td>
+                            <input type="text" name="site_whatsapp_msg" id="site_whatsapp_msg" value="<?= get_option('site_whatsapp_msg'); ?>" placeholder="Hi there! I need more details about your products." />
+                            <p class="description">Insert the Whatsapp custom message.</p>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row">Whatsapp Modal Text</th>
+                        <td>
+                            <input type="text" name="site_whatsapp_modal_text" id="site_whatsapp_modal_text" value="<?= get_option('site_whatsapp_modal_text'); ?>" placeholder="Hi there! I need more details about your products." />
+                            <p class="description">Insert the Whatsapp modal text.</p>
+                        </td>
+                    </tr>
+                    <tr valign="top">
                         <th scope="row">Facebook</th>
                         <td>
                             <input type="url" name="site_facebook" id="site_facebook" value="<?= get_option('site_facebook'); ?>" placeholder="https://facebook.com/" />
@@ -186,6 +200,8 @@ function register_theme_settings() {
         'site_address',
         'site_phone',
         'site_whatsapp',
+        'site_whatsapp_modal_text',
+        'site_whatsapp_msg',
         'site_favicon',
         'site_logo_header',
         'site_logo_footer',

@@ -2,6 +2,7 @@
 function mf_footer() {
     $theme_location = 'footer';
     $menu_items = [];
+    $whatsapp_msg = get_option('site_whatsapp_msg');
     
     if (($locations = get_nav_menu_locations()) && isset($locations[$theme_location]) ) {
         $menu = get_term( $locations[$theme_location], 'nav_menu' );
@@ -100,6 +101,12 @@ function mf_footer() {
             </div>
         </div>
     </footer>
+
+    <?php 
+    if(isset($whatsapp_msg) && $whatsapp_msg !== "") {
+        import_component("whatsapp-modal", []);
+    }
+    ?>
     <?php wp_footer(); ?>
     <?php
 }
