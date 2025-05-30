@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const popupCloseBtn = document.querySelector(
     ".custom__popup .custom__popup_close"
   );
-  const popupDelay = 1000;
+  const popupDelay = popup.dataset.delay * 1000 || 5000;
 
   popupCloseBtn.addEventListener("click", function () {
     popup.classList.remove("show__popup");
