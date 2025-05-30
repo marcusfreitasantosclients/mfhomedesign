@@ -23,7 +23,7 @@ global $version;
 
 function theme_enqueue_styles_and_scripts() {
     global $version;
-    $version = "1.4.7";
+    $version = "1.4.8";
     //CSS
     wp_enqueue_style('bootstrap-css', THEME_URL . '/assets/libs/bootstrap/css/bootstrap.min.css', [], $version);
     wp_enqueue_style('lightbox-css', THEME_URL . '/assets/libs/lightbox/css/lightbox.min.css', [], $version);
@@ -142,10 +142,10 @@ function get_product_brands($brand_ids=[]){
 
 
 function send_form_data(WP_REST_Request $request){
-
     $form_data = json_decode($request->get_body(), true);
-    $email_to = $form_data['targetEmails'];
-    $headers[] = 'From: ' . get_bloginfo('name') . '<' . $email_to . '>';
+    $email_to = $form_data['targetEmails'] !== "" ? explode(',', $form_data['targetEmails']) : [get_option('site_email')];
+    $headers[] = 'Content-Type: text/html; charset=UTF-8';
+    $headers[] = 'From: ' . get_bloginfo('name') . '<' . get_option('site_email') . '>';
 
     $email_body = '
     <html lang="en">

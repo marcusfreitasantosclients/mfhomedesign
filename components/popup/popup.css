@@ -31,6 +31,7 @@
   background-color: var(--light_gray_color);
   border-radius: var(--default-input-border-radius) 0 0
     var(--default-input-border-radius);
+  width: 100%;
 }
 
 .custom__popup_form_wrapper h2 {

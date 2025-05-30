@@ -1,3 +1,5 @@
+const siteUrl = current_user_data.site_url;
+
 function insertEsInUrl(url) {
   try {
     const parsedUrl = new URL(url);
@@ -38,7 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (currentUrl.includes("/es/")) {
     const links = [...document.querySelectorAll("a")];
     links.forEach((link) => {
-      link.setAttribute("href", insertEsInUrl(link.getAttribute("href")));
+      if (
+        link.getAttribute("href") !== null &&
+        link.getAttribute("href").includes(siteUrl) &&
+        !link.getAttribute("href").includes("wp-login.php")
+      )
+        link.setAttribute("href", insertEsInUrl(link.getAttribute("href")));
     });
   }
 });
