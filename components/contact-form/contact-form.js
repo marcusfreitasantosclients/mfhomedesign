@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.status === 200) {
         alert("Your message was received");
+        form.reset();
       } else {
         alert("Oops! Something is wrong, try again later.");
       }
