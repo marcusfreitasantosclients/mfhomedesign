@@ -432,7 +432,7 @@ add_filter('wp_check_filetype_and_ext', function($data, $file, $filename, $mimes
 
 
 function show_popup_based_on_current_page(){
-    $currentPageID = get_the_ID();
+  $currentPageID = is_shop() ? woocommerce_get_page_id('shop') : get_the_ID();
     $currentPostType = get_post_type($currentPageID);
 
     $args = [
