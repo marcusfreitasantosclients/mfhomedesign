@@ -1,6 +1,7 @@
 <?php
 function mf_contact_form($component_data){    
     $side_images = $component_data['side_images'];
+    $target_emails = $component_data['target_emails'];
     ?>
     <section class="py-5">
         <div class='container'>
@@ -14,7 +15,7 @@ function mf_contact_form($component_data){
                     ]) ?>
 
 
-                    <form class="mf_contact_form position-relative mt-5">
+                    <form class="mf_contact_form position-relative mt-5" data-target-emails="<?= concat_target_emails($target_emails); ?>">
                         <?php import_component('loading-spinner', ['loading-spinner' => null]); ?>
 
                         <div class="row">

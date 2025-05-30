@@ -31,9 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
   contactForms.forEach((form) => {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      const targetEmails = form.dataset.targetEmails;
       const formData = new FormData(form);
 
-      const requestBody = {};
+      const requestBody = {
+        targetEmails,
+      };
 
       formData.forEach((value, field) => {
         requestBody[field] = value;

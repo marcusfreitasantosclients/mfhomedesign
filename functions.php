@@ -16,6 +16,7 @@ require_once('inc/general-setup/general-setup.php');
 require_once('inc/custom-post-types/cpt-services.php');
 require_once('inc/custom-post-types/cpt-designers.php');
 require_once('inc/custom-post-types/cpt-gallery.php');
+require_once('inc/custom-post-types/cpt-popups.php');
 require_once('api-routes.php');
 global $version;
 
@@ -141,8 +142,9 @@ function get_product_brands($brand_ids=[]){
 
 
 function send_form_data(WP_REST_Request $request){
+
     $form_data = json_decode($request->get_body(), true);
-    $email_to = get_option('site_email');
+    $email_to = $form_data['targetEmails'];
     $headers[] = 'From: ' . get_bloginfo('name') . '<' . $email_to . '>';
 
     $email_body = '
@@ -427,5 +429,60 @@ add_filter('wp_check_filetype_and_ext', function($data, $file, $filename, $mimes
     }
     return $data;
 }, 10, 4);
+
+
+function show_popup_based_on_current_page(){
+    $currentPageID = get_the_ID();
+    $currentPostType = get_post_type($currentPageID);
+
+    $args = [
+        'post_type'  => 'popup',
+        'meta_query' => [
+            'relation' => 'OR',
+            [
+                'key'     => 'pages',
+                'value'   => '"' . $currentPageID . '"',
+                'compare' => 'LIKE',
+            ],
+            [
+                'key'     => 'dynamic_content',
+                'value'   => '"' . $currentPostType . '"',
+                'compare' => 'LIKE',
+            ]
+        ],
+        'posts_per_page' => 1,
+    ];
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        $query->the_post();
+        import_component('popup', [
+            'popup' => [
+              'ID' => get_the_ID(),
+            ],
+        ]);
+    }
+    wp_reset_postdata();
+
+}
+add_action('wp_footer', 'show_popup_based_on_current_page');
+
+
+function concat_target_emails($target_emails){
+  $target_emails_addresses = [];
+  $site_email = get_option("site_email");
+
+  if (is_array($target_emails) && !empty($target_emails)) {
+      foreach($target_emails as $email) {
+          if (is_email($email['email_address'])) {
+              $target_emails_addresses[] = sanitize_email($email['email_address']);
+          }
+      }
+      $target_emails_addresses = implode(',', $target_emails_addresses);
+  }
+
+  return empty($target_emails_addresses) ? $site_email : $target_emails_addresses;
+}
 
 ?>
