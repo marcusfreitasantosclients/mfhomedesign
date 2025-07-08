@@ -43,7 +43,7 @@
   }
 }
 
-.whatsapp__popup {
+.whatsapp__popup.show__popup {
   position: fixed;
   background-color: #f1f1f1;
   padding: 40px;
@@ -55,7 +55,6 @@
   opacity: 0;
   border-radius: 80px 10px 10px 10px;
   animation: 0.5s show__whatsapp_popup_animation forwards ease-out;
-  animation-delay: 5s;
 }
 
 .whatsapp__popup h4 {
