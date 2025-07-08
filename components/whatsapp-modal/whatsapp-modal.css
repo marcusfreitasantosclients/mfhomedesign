@@ -43,6 +43,10 @@
   }
 }
 
+.whatsapp__popup {
+  display: none;
+}
+
 .whatsapp__popup.show__popup {
   position: fixed;
   background-color: #f1f1f1;
